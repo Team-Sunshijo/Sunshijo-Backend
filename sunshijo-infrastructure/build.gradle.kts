@@ -17,6 +17,9 @@ dependencies {
 
     annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor")
 
+    //UUID time based
+    implementation("com.fasterxml.uuid:java-uuid-generator:3.1.4")
+
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("org.springframework.boot:spring-boot-starter-security")
 
