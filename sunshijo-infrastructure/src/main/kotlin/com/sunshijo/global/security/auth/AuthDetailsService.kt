@@ -5,8 +5,10 @@ import com.sunshijo.global.exception.UserNotFoundException
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.stereotype.Component
 import java.util.UUID
 
+@Component
 class AuthDetailsService (
         private val teacherRepository: TeacherRepository
 ) : UserDetailsService {

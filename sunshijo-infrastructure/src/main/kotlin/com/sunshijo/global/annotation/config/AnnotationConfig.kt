@@ -14,7 +14,6 @@ import org.springframework.context.annotation.FilterType
                     type = FilterType.ANNOTATION,
                     classes = [
                         UseCase::class,
-                        Spi::class
                     ]
             )
         ]

@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 import java.util.UUID
 
 interface TeacherRepository : CrudRepository<TeacherEntity, UUID> {
-
+    fun findByAccountId(accountId: String): TeacherEntity?
 }
