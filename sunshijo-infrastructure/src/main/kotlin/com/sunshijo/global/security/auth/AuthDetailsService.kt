@@ -13,8 +13,8 @@ class AuthDetailsService (
         private val teacherRepository: TeacherRepository
 ) : UserDetailsService {
 
-    override fun loadUserByUsername(username: String?): UserDetails {
-        val user = teacherRepository.findByIdOrNull(UUID.fromString(username))
+    override fun loadUserByUsername(accountId: String?): UserDetails {
+        val user = teacherRepository.findByIdOrNull(UUID.fromString(accountId))
                 ?: throw UserNotFoundException
         return AuthDetails(user)
     }
