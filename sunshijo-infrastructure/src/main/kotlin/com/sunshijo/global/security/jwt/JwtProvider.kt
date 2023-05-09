@@ -5,6 +5,7 @@ import com.sunshijo.domain.teacher.spi.dto.SpiTokenResponse
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.stereotype.Component
+import java.time.LocalDateTime
 import java.util.*
 
 @Component
@@ -30,6 +31,6 @@ class JwtProvider (
     override fun provideBothToken(userId: UUID) = SpiTokenResponse(
             accessToken = createAccessToken(userId),
             refreshToken = createRefreshToken(userId),
-            refreshTokenExp = securityProperties.refreshExp
+            accessTokenExp = LocalDateTime.now().plusSeconds(securityProperties.accessExp)
     )
 }

@@ -2,7 +2,6 @@ package com.sunshijo.domain.teacher.persistence.entity
 
 import com.sunshijo.global.entity.BaseUUIDEntity
 import org.jetbrains.annotations.NotNull
-import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.Table
 
@@ -10,7 +9,7 @@ import javax.persistence.Table
 @Table(name = "tbl_teacher")
 class TeacherEntity (
 
-        id: UUID,
+        id: Long,
 
         accountId: String,
 

@@ -1,6 +1,7 @@
 package com.sunshijo.domain.teacher.domain
 
 import com.sunshijo.annotation.Aggregate
+import java.time.LocalDateTime
 
 @Aggregate
 class RefreshToken (
@@ -9,9 +10,9 @@ class RefreshToken (
 
         var refreshToken: String,
 
-        var ttl: Long
+        var ttl: LocalDateTime
 ) {
-    fun updateToken(refreshToken: String, ttl: Long) {
+    fun updateToken(refreshToken: String, ttl: LocalDateTime) {
         this.refreshToken = refreshToken
         this.ttl = ttl
     }

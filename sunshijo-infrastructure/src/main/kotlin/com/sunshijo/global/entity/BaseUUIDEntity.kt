@@ -1,17 +1,13 @@
 package com.sunshijo.global.entity
 
-import com.fasterxml.uuid.Generators
-import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.Id
-import javax.persistence.MappedSuperclass
+import javax.persistence.*
 
 @MappedSuperclass
 abstract class BaseUUIDEntity (
-        id: UUID?
+        id: Long
 ) {
 
     @Id
-    @Column(columnDefinition = "BINARY(16)", nullable = false)
-    val id: UUID = id ?: Generators.timeBasedGenerator().generate()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id = id
 }

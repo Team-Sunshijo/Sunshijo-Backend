@@ -1,10 +1,12 @@
 package com.sunshijo.domain.teacher.spi.dto
 
+import java.time.LocalDateTime
+
 class SpiTokenResponse (
 
         val accessToken: String,
 
         val refreshToken: String,
 
-        val refreshTokenExp: Long
+        val accessTokenExp: LocalDateTime
 )

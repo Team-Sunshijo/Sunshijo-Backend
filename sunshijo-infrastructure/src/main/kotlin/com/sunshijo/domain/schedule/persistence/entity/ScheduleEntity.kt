@@ -5,7 +5,6 @@ import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseUUIDEntity
 import org.jetbrains.annotations.NotNull
 import java.util.Date
-import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
@@ -14,7 +13,7 @@ import javax.persistence.ManyToOne
 @Entity
 class ScheduleEntity (
 
-        id: UUID,
+        id: Long,
 
         grade: Int,
 
