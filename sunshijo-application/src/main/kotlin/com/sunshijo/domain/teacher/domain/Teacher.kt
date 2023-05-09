@@ -10,5 +10,7 @@ class Teacher (
 
         val accountId: String,
 
-        val password: String
+        val password: String,
+
+        val name: String
 )

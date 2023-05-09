@@ -12,7 +12,8 @@ class TeacherMapper : GenericMapper<Teacher, TeacherEntity> {
         Teacher(
                 id = it.id,
                 accountId = it.accountId,
-                password = it.password
+                password = it.password,
+                name = it.name
         )
     }
 
@@ -20,7 +21,8 @@ class TeacherMapper : GenericMapper<Teacher, TeacherEntity> {
         TeacherEntity(
                 id = it.id,
                 accountId = it.accountId,
-                password = it.password
+                password = it.password,
+                name = it.name
         )
     }
 

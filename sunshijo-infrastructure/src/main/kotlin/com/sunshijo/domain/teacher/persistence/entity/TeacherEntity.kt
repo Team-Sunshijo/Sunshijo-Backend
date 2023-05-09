@@ -14,7 +14,9 @@ class TeacherEntity (
 
         accountId: String,
 
-        password: String
+        password: String,
+
+        name: String
 
 ) : BaseUUIDEntity(id) {
 
@@ -23,4 +25,7 @@ class TeacherEntity (
 
     @field:NotNull
     var password = password
+
+    @field:NotNull
+    var name = name
 }
