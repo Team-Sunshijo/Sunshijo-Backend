@@ -5,7 +5,7 @@ import com.sunshijo.annotation.Aggregate
 @Aggregate
 class Teacher (
 
-        val id: Long,
+        val id: Long = 0,
 
         val accountId: String,
 
