@@ -10,9 +10,9 @@ class RefreshToken (
 
         var refreshToken: String,
 
-        var ttl: LocalDateTime
+        var ttl: Long
 ) {
-    fun updateToken(refreshToken: String, ttl: LocalDateTime) {
+    fun updateToken(refreshToken: String, ttl: Long) {
         this.refreshToken = refreshToken
         this.ttl = ttl
     }
