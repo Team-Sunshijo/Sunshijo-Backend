@@ -19,8 +19,11 @@ subprojects{
         implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
-        testImplementation("org.springframework.security:spring-security-test")
+
+        //TEST
+        testImplementation("io.kotest:kotest-runner-junit5-jvm:5.4.0")
+        testImplementation("io.kotest:kotest-assertions-core-jvm:5.4.0")
+        testImplementation("io.mockk:mockk:1.13.2")
     }
 }
 
