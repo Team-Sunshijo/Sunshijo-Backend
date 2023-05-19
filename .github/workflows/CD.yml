@@ -1,4 +1,4 @@
-name: Sunshijo - CD
+name: CD
 
 on:
   push:
@@ -27,11 +27,10 @@ jobs:
             build
             --no-daemon
 
-      - name: publish to Registry
+      - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@v4
         with:
-          name: Sunshijo
-          dockerfile: ./Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          registry: ${{ secrets.DOCKER_REGISTRY }}
+            name: woonseok/sunshijo
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+            registry: ${{ secrets.DOCKER_REGISTRY }}
