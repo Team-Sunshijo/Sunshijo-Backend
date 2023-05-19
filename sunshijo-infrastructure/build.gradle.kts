@@ -51,6 +51,6 @@ allOpen {
     annotation("javax.persistence.Embeddable")
 }
 
-tasks.getByName<Jar>("bootJar") {
+tasks.getByName<Jar>("jar") {
     enabled = false
 }
