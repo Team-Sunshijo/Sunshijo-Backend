@@ -4,6 +4,7 @@ import com.sunshijo.domain.teacher.api.dto.request.DomainSignUpRequest
 import com.sunshijo.domain.teacher.domain.Teacher
 import com.sunshijo.domain.teacher.exception.SignUpCodeMismatchException
 import com.sunshijo.domain.teacher.spi.CommandUserPort
+import com.sunshijo.domain.teacher.spi.QueryUserPort
 import com.sunshijo.domain.teacher.spi.UserSecurityPort
 import com.sunshijo.domain.teacher.usecase.SignUpUseCase
 import io.kotest.assertions.throwables.shouldThrow
@@ -18,8 +19,9 @@ internal class SignUpUseCaseTest : DescribeSpec({
 
     val commandUserPort: CommandUserPort = mockk()
     val userSecurityPort: UserSecurityPort = mockk()
+    val queryUserPort: QueryUserPort = mockk()
 
-    val signUpUseCase = SignUpUseCase(commandUserPort, userSecurityPort)
+    val signUpUseCase = SignUpUseCase(commandUserPort, userSecurityPort, queryUserPort)
 
     val request: DomainSignUpRequest = mockk()
 
@@ -34,7 +36,7 @@ internal class SignUpUseCaseTest : DescribeSpec({
             every { request.password } returns password
             every { request.name } returns name
             every { request.signUpCode } returns "incorrectCode"
-
+            every { queryUserPort.existsByAccountId(any()) } returns false
             it("SignUpCodeMismatchException이 발생해야 합니다") {
                 val exception = shouldThrow<SignUpCodeMismatchException> {
                     signUpUseCase.signUp(request)
@@ -48,6 +50,7 @@ internal class SignUpUseCaseTest : DescribeSpec({
             every { request.password } returns password
             every { request.name } returns name
             every { request.signUpCode } returns signUpCode
+            every { queryUserPort.existsByAccountId(any()) } returns false
             every { userSecurityPort.encodePassword(any()) } returns "encodedPassword"
             every { commandUserPort.saveUser(any()) } just Runs
 

@@ -26,6 +26,7 @@ open class SignUpUseCase (
         if (request.signUpCode != "DsmTeacher") {
             throw SignUpCodeMismatchException
         }
+
         commandUserPort.saveUser(Teacher(
                 accountId = request.accountId,
                 password = userSecurityPort.encodePassword(request.password),
