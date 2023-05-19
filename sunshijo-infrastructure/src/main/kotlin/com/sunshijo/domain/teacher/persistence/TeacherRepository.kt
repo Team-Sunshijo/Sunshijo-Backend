@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository
 
 interface TeacherRepository : CrudRepository<TeacherEntity, Long> {
     fun findByAccountId(accountId: String): TeacherEntity?
+
+    fun existsByAccountId(accountId: String): Boolean
 }

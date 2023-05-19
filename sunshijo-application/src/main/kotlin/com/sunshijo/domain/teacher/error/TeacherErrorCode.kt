@@ -8,5 +8,7 @@ enum class TeacherErrorCode (
 ) : ErrorProperty {
 
     PASSWORD_MIS_MATCH(400, "Password Mis Match"),
-    SIGNUP_CODE_MIS_MATCH(400, "SignUp Code Mis Match")
+    SIGNUP_CODE_MIS_MATCH(400, "SignUp Code Mis Match"),
+
+    USER_ALREADY_EXIST(409, "User Already Exist")
 }

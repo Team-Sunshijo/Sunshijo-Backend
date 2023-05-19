@@ -21,4 +21,8 @@ class UserPersistenceAdapter (
     override fun saveUser(teacher: Teacher) {
         teacherRepository.save(teacherMapper.toEntity(teacher))
     }
+
+    override fun existsByAccountId(accountId: String): Boolean =
+        teacherRepository.existsByAccountId(accountId)
+
 }
