@@ -1,6 +1,5 @@
-package com.sunshijo.domain.schedule.persistence.entity
+package com.sunshijo.domain.timetable.persistence.entity
 
-import com.sunshijo.domain.subject.persistence.entity.SubjectEntity
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseUUIDEntity
 import org.jetbrains.annotations.NotNull
@@ -9,9 +8,11 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
 
 @Entity
-class ScheduleEntity (
+@Table(name = "tbl_timetable")
+class TimetableEntity (
 
         id: Long,
 
@@ -23,13 +24,11 @@ class ScheduleEntity (
 
         weekOfDate: Date,
 
+        subject: String,
+
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "teacher_id", nullable = false)
         val teacherEntity: TeacherEntity,
-
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "subject_id", nullable = false)
-        val subjectEntity: SubjectEntity
 
 ) : BaseUUIDEntity(id) {
 
@@ -44,4 +43,7 @@ class ScheduleEntity (
 
     @field:NotNull
     var weekOfDate = weekOfDate
+
+    @field:NotNull
+    var subject = subject
 }

@@ -1,4 +1,4 @@
-package com.sunshijo.domain.schedule.domain
+package com.sunshijo.domain.timetable.domain
 
 import com.sunshijo.annotation.Aggregate
 import com.sunshijo.domain.subject.domain.Subject
@@ -6,7 +6,7 @@ import com.sunshijo.domain.teacher.domain.Teacher
 import java.util.Date
 
 @Aggregate
-class Schedule (
+class TimeTable (
 
         val id: Long,
 
