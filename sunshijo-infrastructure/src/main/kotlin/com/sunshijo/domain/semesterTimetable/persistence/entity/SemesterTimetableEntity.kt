@@ -1,16 +1,19 @@
-package com.sunshijo.domain.timetable.persistence.entity
+package com.sunshijo.domain.semesterTimetable.persistence.entity
 
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseUUIDEntity
 import org.jetbrains.annotations.NotNull
 import javax.persistence.*
-import javax.validation.constraints.Max
 
 @Entity
-@Table(name = "tbl_timetable")
-class TimetableEntity (
+@Table(name = "tbl_semesterTimetable")
+class SemesterTimetableEntity (
 
         id: Long,
+
+        year: Int,
+
+        semester: Int,
 
         grade: Int,
 
@@ -27,6 +30,14 @@ class TimetableEntity (
         val teacherEntity: TeacherEntity,
 
 ) : BaseUUIDEntity(id) {
+
+    @Column(columnDefinition = "VARCHAR(4)")
+    @field:NotNull
+    var year = year
+
+    @Column(columnDefinition = "VARCHAR(1)")
+    @field:NotNull
+    var semester = semester
 
     @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull

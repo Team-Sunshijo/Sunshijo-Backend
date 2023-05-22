@@ -1,13 +1,17 @@
-package com.sunshijo.domain.timetable.domain
+package com.sunshijo.domain.semesterTimetable.domain
 
 import com.sunshijo.annotation.Aggregate
 import com.sunshijo.domain.teacher.domain.Teacher
 import java.util.Date
 
 @Aggregate
-class TimeTable (
+class SemesterTimetable (
 
         val id: Long,
+
+        val year: Int,
+
+        val semester: Int,
 
         val grade: Int,
 
