@@ -3,12 +3,8 @@ package com.sunshijo.domain.timetable.persistence.entity
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseUUIDEntity
 import org.jetbrains.annotations.NotNull
-import java.util.Date
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
-import javax.persistence.Table
+import javax.persistence.*
+import javax.validation.constraints.Max
 
 @Entity
 @Table(name = "tbl_timetable")
@@ -22,7 +18,7 @@ class TimetableEntity (
 
         period: Int,
 
-        weekOfDate: Date,
+        weekOfDate: Int,
 
         subject: String,
 
@@ -32,18 +28,23 @@ class TimetableEntity (
 
 ) : BaseUUIDEntity(id) {
 
+    @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull
     var grade = grade
 
+    @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull
     var classNum = classNum
 
+    @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull
     var period = period
 
+    @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull
     var weekOfDate = weekOfDate
 
+    @Column(columnDefinition = "VARCHAR(30)")
     @field:NotNull
     var subject = subject
 }
