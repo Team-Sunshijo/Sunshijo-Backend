@@ -3,7 +3,7 @@ package com.sunshijo.global.entity
 import javax.persistence.*
 
 @MappedSuperclass
-abstract class BaseUUIDEntity (
+abstract class BaseIDEntity (
         id: Long
 ) {
 

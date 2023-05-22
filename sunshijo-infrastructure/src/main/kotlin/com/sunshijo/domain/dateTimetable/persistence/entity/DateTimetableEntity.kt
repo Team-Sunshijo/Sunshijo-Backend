@@ -1,19 +1,22 @@
-package com.sunshijo.domain.semesterTimetable.persistence.entity
+package com.sunshijo.domain.dateTimetable.persistence.entity
 
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseIDEntity
 import org.jetbrains.annotations.NotNull
+import java.util.Date
 import javax.persistence.*
 
 @Entity
-@Table(name = "tbl_semesterTimetable")
-class SemesterTimetableEntity (
+@Table(name = "tbl_dateTimetable")
+class DateTimetableEntity (
 
         id: Long,
 
         year: Int,
 
         semester: Int,
+
+        date: Date,
 
         grade: Int,
 
@@ -27,7 +30,7 @@ class SemesterTimetableEntity (
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "teacher_id", nullable = false)
-        val teacherEntity: TeacherEntity,
+        val teacherEntity: TeacherEntity
 
 ) : BaseIDEntity(id) {
 
@@ -38,6 +41,9 @@ class SemesterTimetableEntity (
     @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull
     var semester = semester
+
+    @field:NotNull
+    var date = date
 
     @Column(columnDefinition = "VARCHAR(1)")
     @field:NotNull

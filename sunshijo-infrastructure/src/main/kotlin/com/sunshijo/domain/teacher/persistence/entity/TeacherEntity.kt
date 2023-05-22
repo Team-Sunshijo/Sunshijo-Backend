@@ -1,6 +1,6 @@
 package com.sunshijo.domain.teacher.persistence.entity
 
-import com.sunshijo.global.entity.BaseUUIDEntity
+import com.sunshijo.global.entity.BaseIDEntity
 import org.jetbrains.annotations.NotNull
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -18,7 +18,7 @@ class TeacherEntity (
 
         name: String
 
-) : BaseUUIDEntity(id) {
+) : BaseIDEntity(id) {
 
     @Column(columnDefinition = "VARCHAR(15)")
     @field:NotNull
