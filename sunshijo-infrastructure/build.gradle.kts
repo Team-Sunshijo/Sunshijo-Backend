@@ -17,9 +17,6 @@ dependencies {
 
     annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor")
 
-    //UUID time based
-    implementation("com.fasterxml.uuid:java-uuid-generator:3.1.4")
-
     implementation("io.jsonwebtoken:jjwt:0.9.1")
     implementation("org.springframework.boot:spring-boot-starter-security")
 
@@ -30,8 +27,8 @@ dependencies {
 
     implementation("org.springframework.boot:spring-boot-starter-data-redis")
 
-//    implementation("com.querydsl:querydsl-jpa:5.0.0")
-//    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
+    implementation("com.querydsl:querydsl-jpa:5.0.0")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jpa")
 
     implementation(project(":sunshijo-application"))
 }

@@ -1,7 +1,6 @@
 package com.sunshijo.domain.dateTimetable.domain
 
 import com.sunshijo.annotation.Aggregate
-import com.sunshijo.domain.teacher.domain.Teacher
 import java.util.*
 
 @Aggregate
@@ -21,9 +20,9 @@ class DateTimetable (
 
         val period: Int,
 
-        val weekOfDate: Date,
+        val weekOfDate: Int,
 
         val subject: String,
 
-        val teacher: Teacher
+        val teacherId: Long
 )
