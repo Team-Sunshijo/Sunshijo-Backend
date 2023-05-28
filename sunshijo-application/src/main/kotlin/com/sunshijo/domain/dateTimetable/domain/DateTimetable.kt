@@ -1,28 +1,28 @@
 package com.sunshijo.domain.dateTimetable.domain
 
 import com.sunshijo.annotation.Aggregate
-import java.util.*
+import java.sql.Date
 
 @Aggregate
-class DateTimetable (
+class DateTimetable(
 
-        val id: Long,
+    val id: Long,
 
-        val year: Int,
+    val year: Int,
 
-        val semester: Int,
+    val semester: Int,
 
-        val date: Date,
+    val date: Date,
 
-        val grade: Int,
+    val grade: Int,
 
-        val classNum: Int,
+    val classNum: Int,
 
-        val period: Int,
+    val period: Int,
 
-        val weekOfDate: Int,
+    val weekOfDate: Int,
 
-        val subject: String,
+    val subject: String,
 
-        val teacherId: Long
+    val teacherId: Long
 )
