@@ -11,37 +11,39 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "tbl_changeDetails")
-class ChangeDetailsEntity (
+class ChangeDetailsEntity(
 
-        id: Long,
+    id: Long,
 
-        status: Status,
+    status: Status,
 
-        division: Division,
+    division: Division,
 
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "master_id", nullable = false)
-        val changeMasterEntity: ChangeMasterEntity,
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "master_id", nullable = false)
+    val changeMasterEntity: ChangeMasterEntity,
 
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "teacher_id", nullable = true)
-        val teacherEntity: TeacherEntity,
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = true)
+    val teacherEntity: TeacherEntity,
 
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "requestTimetable_id", nullable = false)
-        val requestTimetableEntity: DateTimetableEntity,
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "requestTimetable_id", nullable = false)
+    val requestTimetableEntity: DateTimetableEntity,
 
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "changeTimetable_id", nullable = true)
-        val changeTimetableEntity: DateTimetableEntity
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "changeTimetable_id", nullable = true)
+    val changeTimetableEntity: DateTimetableEntity
 
 ) : BaseIDEntity(id) {
 
-        @field:NotNull
-        @Column(columnDefinition = "VARCHAR(10)")
-        var status = status
+    @Enumerated(EnumType.STRING)
+    @field:NotNull
+    @Column(columnDefinition = "VARCHAR(10)")
+    var status = status
 
-        @field:NotNull
-        @Column(columnDefinition = "VARCHAR(11)")
-        var division = division
+    @Enumerated(EnumType.STRING)
+    @field:NotNull
+    @Column(columnDefinition = "VARCHAR(11)")
+    var division = division
 }

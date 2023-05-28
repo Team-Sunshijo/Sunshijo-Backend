@@ -3,34 +3,34 @@ package com.sunshijo.domain.dateTimetable.persistence.entity
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseIDEntity
 import org.jetbrains.annotations.NotNull
-import java.util.Date
+import java.sql.Date
 import javax.persistence.*
 
 @Entity
 @Table(name = "tbl_dateTimetable")
-class DateTimetableEntity (
+class DateTimetableEntity(
 
-        id: Long,
+    id: Long,
 
-        year: Int,
+    year: Int,
 
-        semester: Int,
+    semester: Int,
 
-        date: Date,
+    date: Date,
 
-        grade: Int,
+    grade: Int,
 
-        classNum: Int,
+    classNum: Int,
 
-        period: Int,
+    period: Int,
 
-        weekOfDate: Int,
+    weekOfDate: Int,
 
-        subject: String,
+    subject: String,
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "teacher_id", nullable = false)
-        val teacherEntity: TeacherEntity
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    val teacherEntity: TeacherEntity
 
 ) : BaseIDEntity(id) {
 

@@ -6,20 +6,20 @@ import com.sunshijo.domain.dateTimetable.domain.DateTimetable
 import com.sunshijo.domain.teacher.domain.Teacher
 
 @Aggregate
-class ChangeDetails (
+class ChangeDetails(
 
-        val id: Long,
+    val id: Long,
 
-        val status: Status,
+    val status: Status,
 
-        val division: Division,
+    val division: Division,
 
-        val changeMaster: ChangeMaster,
+    val changeMasterId: Long,
 
-        val teacher: Teacher,
+    val teacherId: Long,
 
-        val requestTimetable: DateTimetable,
+    val requestTimetableId: Long,
 
-        val changeTimetable: DateTimetable
+    val changeTimetableId: Long
 
 )
