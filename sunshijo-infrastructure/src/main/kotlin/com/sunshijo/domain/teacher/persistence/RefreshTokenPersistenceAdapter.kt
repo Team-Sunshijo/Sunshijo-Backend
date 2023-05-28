@@ -6,9 +6,9 @@ import com.sunshijo.domain.teacher.spi.RefreshTokenPort
 import com.sunshijo.global.annotation.Adapter
 
 @Adapter
-class RefreshTokenPersistenceAdapter (
-        private val refreshTokenRepository: RefreshTokenRepository,
-        private val refreshTokenMapper: RefreshTokenMapper
+class RefreshTokenPersistenceAdapter(
+    private val refreshTokenRepository: RefreshTokenRepository,
+    private val refreshTokenMapper: RefreshTokenMapper
 ) : RefreshTokenPort {
 
     override fun saveRefreshToken(refreshToken: RefreshToken) {

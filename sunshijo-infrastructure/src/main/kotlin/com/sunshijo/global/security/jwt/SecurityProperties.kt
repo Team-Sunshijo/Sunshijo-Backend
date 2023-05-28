@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
 @ConfigurationProperties(prefix = "jwt")
-class SecurityProperties (
+class SecurityProperties(
 
     val secretKey: String,
     val accessExp: Long,

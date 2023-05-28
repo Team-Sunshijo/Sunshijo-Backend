@@ -11,16 +11,16 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import java.time.Duration
 
 @Configuration
-class RedisConfig (
+class RedisConfig(
 
-        @Value("\${redis.host}")
-        private val redisHost: String,
+    @Value("\${redis.host}")
+    private val redisHost: String,
 
-        @Value("\${redis.port}")
-        private val redisPort: Int,
+    @Value("\${redis.port}")
+    private val redisPort: Int,
 
-        @Value("\${REDIS_PASSWORD}")
-        private val redisPassword: String
+    @Value("\${REDIS_PASSWORD}")
+    private val redisPassword: String
 
 ) {
 
@@ -30,9 +30,9 @@ class RedisConfig (
         redisConfig.setPassword(RedisPassword.of(redisPassword))
 
         val clientConfig = LettuceClientConfiguration.builder()
-                .commandTimeout(Duration.ofSeconds(1))
-                .shutdownTimeout(Duration.ZERO)
-                .build()
+            .commandTimeout(Duration.ofSeconds(1))
+            .shutdownTimeout(Duration.ZERO)
+            .build()
 
         return LettuceConnectionFactory(redisConfig, clientConfig)
     }

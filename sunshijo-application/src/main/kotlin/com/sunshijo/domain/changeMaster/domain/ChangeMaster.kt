@@ -4,14 +4,14 @@ import com.sunshijo.annotation.Aggregate
 import com.sunshijo.domain.teacher.domain.Teacher
 
 @Aggregate
-class ChangeMaster (
+class ChangeMaster(
 
-        val id: Long,
+    val id: Long,
 
-        val reason: String,
+    val reason: String,
 
-        val confirmed: Confirmed,
+    val confirmed: Confirmed,
 
-        val teacher: Teacher
+    val teacher: Teacher
 
 )

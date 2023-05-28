@@ -4,13 +4,13 @@ import com.sunshijo.annotation.Aggregate
 import java.time.LocalDateTime
 
 @Aggregate
-class RefreshToken (
+class RefreshToken(
 
-        val id: String,
+    val id: String,
 
-        var refreshToken: String,
+    var refreshToken: String,
 
-        var ttl: Long
+    var ttl: Long
 ) {
     fun updateToken(refreshToken: String, ttl: Long) {
         this.refreshToken = refreshToken

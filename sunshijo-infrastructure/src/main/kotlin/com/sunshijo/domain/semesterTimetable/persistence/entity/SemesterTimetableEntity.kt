@@ -7,29 +7,29 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "tbl_semesterTimetable")
-class SemesterTimetableEntity (
+class SemesterTimetableEntity(
 
-        id: Long,
+    id: Long,
 
-        year: Int,
+    year: Int,
 
-        semester: Int,
+    semester: Int,
 
-        grade: Int,
+    grade: Int,
 
-        classNum: Int,
+    classNum: Int,
 
-        period: Int,
+    period: Int,
 
-        weekOfDate: Int,
+    weekOfDate: Int,
 
-        subject: String,
+    subject: String,
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "teacher_id", nullable = false)
-        val teacherEntity: TeacherEntity,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    val teacherEntity: TeacherEntity,
 
-) : BaseIDEntity(id) {
+    ) : BaseIDEntity(id) {
 
     @Column(columnDefinition = "VARCHAR(4)")
     @field:NotNull

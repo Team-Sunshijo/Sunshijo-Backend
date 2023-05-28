@@ -7,15 +7,15 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "tbl_assignmnet")
-class AssignmentEntity (
+class AssignmentEntity(
 
-        id: Long,
+    id: Long,
 
-        content: String,
+    content: String,
 
-        @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "timetable_id", nullable = false)
-        val dateTimetableEntity: DateTimetableEntity
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "timetable_id", nullable = false)
+    val dateTimetableEntity: DateTimetableEntity
 
 ) : BaseIDEntity(id) {
 

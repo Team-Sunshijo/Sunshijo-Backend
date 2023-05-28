@@ -4,8 +4,8 @@ import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
-class AuthDetails (
-        private val user: TeacherEntity
+class AuthDetails(
+    private val user: TeacherEntity
 ) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> = mutableListOf()

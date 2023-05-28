@@ -3,13 +3,13 @@ package com.sunshijo.domain.teacher.domain
 import com.sunshijo.annotation.Aggregate
 
 @Aggregate
-class Teacher (
+class Teacher(
 
-        val id: Long = 0,
+    val id: Long = 0,
 
-        val accountId: String,
+    val accountId: String,
 
-        val password: String,
+    val password: String,
 
-        val name: String
+    val name: String
 )

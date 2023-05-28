@@ -2,9 +2,9 @@ package com.sunshijo.global.error
 
 import com.sunshijo.error.ErrorProperty
 
-enum class ErrorCode (
-        override val status: Int,
-        override val message: String
+enum class ErrorCode(
+    override val status: Int,
+    override val message: String
 ) : ErrorProperty {
 
     INVALID_TOKEN(401, "Invalid Token"),

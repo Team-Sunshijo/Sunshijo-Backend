@@ -7,14 +7,14 @@ import java.time.LocalDateTime
 import javax.persistence.Id
 
 @RedisHash
-class RefreshTokenEntity (
+class RefreshTokenEntity(
 
-        @Id
-        val id: String,
+    @Id
+    val id: String,
 
-        @Indexed
-        val refreshToken: String,
+    @Indexed
+    val refreshToken: String,
 
-        @TimeToLive
-        val ttl: Long
+    @TimeToLive
+    val ttl: Long
 )

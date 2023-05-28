@@ -7,14 +7,14 @@ import com.sunshijo.global.annotation.Adapter
 import com.sunshijo.global.exception.UserNotFoundException
 
 @Adapter
-class UserPersistenceAdapter (
-        private val teacherRepository: TeacherRepository,
-        private val teacherMapper: TeacherMapper
+class UserPersistenceAdapter(
+    private val teacherRepository: TeacherRepository,
+    private val teacherMapper: TeacherMapper
 ) : UserPort {
 
     override fun queryUserByAccountId(accountId: String): Teacher {
         return teacherMapper.toDomain(
-                teacherRepository.findByAccountId(accountId) ?:throw UserNotFoundException
+            teacherRepository.findByAccountId(accountId) ?: throw UserNotFoundException
         )
     }
 

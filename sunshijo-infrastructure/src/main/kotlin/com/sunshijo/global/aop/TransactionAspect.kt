@@ -14,8 +14,8 @@ import org.springframework.transaction.interceptor.TransactionInterceptor
 
 @Configuration
 @Aspect
-class TransactionAspect (
-        private val transactionManager: TransactionManager
+class TransactionAspect(
+    private val transactionManager: TransactionManager
 ) {
 
     @Bean
@@ -35,7 +35,7 @@ class TransactionAspect (
 
         transactionAttribute.setName("Transaction")
         transactionAttribute.rollbackRules = listOf(
-                RollbackRuleAttribute(Exception::class.java)
+            RollbackRuleAttribute(Exception::class.java)
         )
         source.setTransactionAttribute(transactionAttribute)
 

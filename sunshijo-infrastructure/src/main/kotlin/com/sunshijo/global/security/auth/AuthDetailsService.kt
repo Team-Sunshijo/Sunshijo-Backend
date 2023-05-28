@@ -7,13 +7,13 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 
 @Component
-class AuthDetailsService (
-        private val teacherRepository: TeacherRepository
+class AuthDetailsService(
+    private val teacherRepository: TeacherRepository
 ) : UserDetailsService {
 
     override fun loadUserByUsername(accountId: String): UserDetails {
         val user = teacherRepository.findByAccountId(accountId)
-                ?: throw UserNotFoundException
+            ?: throw UserNotFoundException
         return AuthDetails(user)
     }
 }

@@ -15,26 +15,30 @@ import javax.validation.Valid
 
 @RequestMapping("/teacher")
 @RestController
-class TeacherWebAdapter (
-        private val signInPort: SignInPort,
-        private val signUpPort: SignUpPort
+class TeacherWebAdapter(
+    private val signInPort: SignInPort,
+    private val signUpPort: SignUpPort
 ) {
 
     @PostMapping("/auth")
     fun signIn(@RequestBody @Valid request: WebSignInRequest): SignInResponse {
-        return signInPort.signIn(DomainSignInRequest(
+        return signInPort.signIn(
+            DomainSignInRequest(
                 accountId = request.accountId,
                 password = request.password
-        ))
+            )
+        )
     }
 
     @PostMapping("/register")
     fun signUp(@RequestBody request: WebSignUpRequest) {
-        signUpPort.signUp(DomainSignUpRequest(
+        signUpPort.signUp(
+            DomainSignUpRequest(
                 accountId = request.accountId,
                 password = request.password,
                 name = request.name,
                 signUpCode = request.signUpCode
-        ))
+            )
+        )
     }
 }

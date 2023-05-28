@@ -15,7 +15,7 @@ open class QueryChangeDetailsUseCase(
 
     override fun execute(grade: Int, classNum: Int): QueryChangeDetailsListResponse {
 
-        val today = LocalDate.of(2023, 5, 24)
+        val today = LocalDate.now()
 
         val changeDetailsList = queryChangeDetailsPort.queryChangeDetailsList(grade, classNum, Date.valueOf(today))
 

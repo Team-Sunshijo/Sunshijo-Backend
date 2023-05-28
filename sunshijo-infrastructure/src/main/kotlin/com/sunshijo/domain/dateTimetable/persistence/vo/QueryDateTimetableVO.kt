@@ -5,19 +5,19 @@ import com.sunshijo.domain.dateTimetable.vo.DateTimetableVO
 
 class QueryDateTimetableVO @QueryProjection constructor(
 
-        grade: Int,
+    grade: Int,
 
-        classNum: Int,
+    classNum: Int,
 
-        period: Int,
+    period: Int,
 
-        weekOfDate: Int,
+    weekOfDate: Int,
 
-        subject: String,
+    subject: String,
 ) : DateTimetableVO(
-        grade = grade,
-        classNum = classNum,
-        period = period,
-        weekOfDate = weekOfDate,
-        subject = subject,
+    grade = grade,
+    classNum = classNum,
+    period = period,
+    weekOfDate = weekOfDate,
+    subject = subject,
 )

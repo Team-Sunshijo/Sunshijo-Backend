@@ -10,18 +10,18 @@ class RefreshTokenMapper : GenericMapper<RefreshToken, RefreshTokenEntity> {
 
     override fun toDomain(entity: RefreshTokenEntity): RefreshToken = entity.let {
         RefreshToken(
-                id = it.id,
-                refreshToken = it.refreshToken,
-                ttl = it.ttl
+            id = it.id,
+            refreshToken = it.refreshToken,
+            ttl = it.ttl
         )
     }
 
 
     override fun toEntity(domain: RefreshToken): RefreshTokenEntity = domain.let {
         RefreshTokenEntity(
-                id = it.id,
-                refreshToken = it.refreshToken,
-                ttl = it.ttl
+            id = it.id,
+            refreshToken = it.refreshToken,
+            ttl = it.ttl
         )
     }
 

@@ -1,11 +1,11 @@
 package com.sunshijo.domain.teacher.api.dto.request
 
-class DomainSignUpRequest (
-        val accountId: String,
+class DomainSignUpRequest(
+    val accountId: String,
 
-        val password: String,
+    val password: String,
 
-        val name: String,
+    val name: String,
 
-        val signUpCode: String
+    val signUpCode: String
 )

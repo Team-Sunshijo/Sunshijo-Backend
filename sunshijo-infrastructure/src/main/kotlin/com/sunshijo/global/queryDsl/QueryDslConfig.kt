@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration
 import javax.persistence.EntityManager
 
 @Configuration
-class QueryDslConfig (
-        private val entityManager: EntityManager
+class QueryDslConfig(
+    private val entityManager: EntityManager
 ) {
 
     @Bean

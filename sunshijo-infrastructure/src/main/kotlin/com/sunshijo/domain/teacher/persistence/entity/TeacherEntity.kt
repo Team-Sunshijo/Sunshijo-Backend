@@ -8,15 +8,15 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "tbl_teacher")
-class TeacherEntity (
+class TeacherEntity(
 
-        id: Long,
+    id: Long,
 
-        accountId: String,
+    accountId: String,
 
-        password: String,
+    password: String,
 
-        name: String
+    name: String
 
 ) : BaseIDEntity(id) {
 

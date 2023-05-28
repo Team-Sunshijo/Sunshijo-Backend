@@ -1,6 +1,6 @@
 package com.sunshijo.error
 
-open class SunshijoException (val errorProperty: ErrorProperty): RuntimeException() {
+open class SunshijoException(val errorProperty: ErrorProperty) : RuntimeException() {
 
     val status: Int
         get() = errorProperty.status

@@ -3,8 +3,8 @@ package com.sunshijo.global.entity
 import javax.persistence.*
 
 @MappedSuperclass
-abstract class BaseIDEntity (
-        id: Long
+abstract class BaseIDEntity(
+    id: Long
 ) {
 
     @Id

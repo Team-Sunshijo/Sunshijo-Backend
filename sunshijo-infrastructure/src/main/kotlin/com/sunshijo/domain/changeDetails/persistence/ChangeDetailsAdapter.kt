@@ -36,6 +36,7 @@ class ChangeDetailsAdapter(
             .on(changeMasterEntity.confirmed.eq(ACCEPT))
             .where(
                 changeDetailsEntity.requestTimetableEntity.date.eq(today)
+                    .or(changeDetailsEntity.changeTimetableEntity.date.eq(today))
                     .and(dateTimetableEntity.grade.eq(grade))
                     .and(dateTimetableEntity.classNum.eq(classNum))
                     .and(changeMasterEntity.confirmed.eq(ACCEPT))

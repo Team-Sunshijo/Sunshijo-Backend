@@ -10,19 +10,19 @@ class TeacherMapper : GenericMapper<Teacher, TeacherEntity> {
 
     override fun toDomain(entity: TeacherEntity): Teacher = entity.let {
         Teacher(
-                id = it.id,
-                accountId = it.accountId,
-                password = it.password,
-                name = it.name
+            id = it.id,
+            accountId = it.accountId,
+            password = it.password,
+            name = it.name
         )
     }
 
     override fun toEntity(domain: Teacher): TeacherEntity = domain.let {
         TeacherEntity(
-                id = it.id,
-                accountId = it.accountId,
-                password = it.password,
-                name = it.name
+            id = it.id,
+            accountId = it.accountId,
+            password = it.password,
+            name = it.name
         )
     }
 

@@ -5,23 +5,23 @@ import com.sunshijo.domain.teacher.domain.Teacher
 import java.util.Date
 
 @Aggregate
-class SemesterTimetable (
+class SemesterTimetable(
 
-        val id: Long,
+    val id: Long,
 
-        val year: Int,
+    val year: Int,
 
-        val semester: Int,
+    val semester: Int,
 
-        val grade: Int,
+    val grade: Int,
 
-        val classNum: Int,
+    val classNum: Int,
 
-        val period: Int,
+    val period: Int,
 
-        val weekOfDate: Date,
+    val weekOfDate: Date,
 
-        val subject: String,
+    val subject: String,
 
-        val teacher: Teacher
+    val teacher: Teacher
 )

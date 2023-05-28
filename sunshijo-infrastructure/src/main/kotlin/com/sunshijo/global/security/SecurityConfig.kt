@@ -13,27 +13,27 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 
 @Configuration
-class SecurityConfig (
-        private val jwtParser: JwtParser,
-        private val objectMapper: ObjectMapper
+class SecurityConfig(
+    private val jwtParser: JwtParser,
+    private val objectMapper: ObjectMapper
 ) {
 
     @Bean
-    protected fun filterChain(http: HttpSecurity) : SecurityFilterChain {
+    protected fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-                .csrf().disable()
-                .formLogin().disable()
-                .cors()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .csrf().disable()
+            .formLogin().disable()
+            .cors()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         http
-                .authorizeRequests()
+            .authorizeRequests()
 
-                .antMatchers(HttpMethod.POST,"/post").authenticated()
+            .antMatchers(HttpMethod.POST, "/post").authenticated()
 
-                .anyRequest().permitAll()
-                .and().apply(FilterConfig(jwtParser, objectMapper))
+            .anyRequest().permitAll()
+            .and().apply(FilterConfig(jwtParser, objectMapper))
 
         return http.build()
     }

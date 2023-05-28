@@ -20,7 +20,7 @@ class GlobalExceptionHandler {
         for (error: FieldError in e.fieldErrors) {
             errorMap[error.field] = error.defaultMessage
         }
-        return ResponseEntity<Map<String, String?>> (errorMap, HttpStatus.BAD_REQUEST)
+        return ResponseEntity<Map<String, String?>>(errorMap, HttpStatus.BAD_REQUEST)
     }
 
     @ExceptionHandler(ConstraintViolationException::class)
@@ -41,8 +41,8 @@ class GlobalExceptionHandler {
     fun handleCustomException(e: SunshijoException): ResponseEntity<BaseErrorResponse> {
 
         return ResponseEntity(
-                BaseErrorResponse.of(e),
-                HttpStatus.valueOf(e.status)
+            BaseErrorResponse.of(e),
+            HttpStatus.valueOf(e.status)
         )
     }
 }

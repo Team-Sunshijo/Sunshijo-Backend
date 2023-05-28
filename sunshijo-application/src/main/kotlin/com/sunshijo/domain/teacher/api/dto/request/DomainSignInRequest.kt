@@ -1,8 +1,8 @@
 package com.sunshijo.domain.teacher.api.dto.request
 
-class DomainSignInRequest (
+class DomainSignInRequest(
 
-        val accountId: String,
+    val accountId: String,
 
-        val password: String
+    val password: String
 )

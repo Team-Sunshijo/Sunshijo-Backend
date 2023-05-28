@@ -13,9 +13,9 @@ import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 
 @Component
-class JwtParser (
-        private val securityProperties: SecurityProperties,
-        private val authDetailsService: AuthDetailsService
+class JwtParser(
+    private val securityProperties: SecurityProperties,
+    private val authDetailsService: AuthDetailsService
 ) {
 
     fun getAuthentication(token: String): Authentication {
@@ -29,11 +29,11 @@ class JwtParser (
     private fun getClaims(token: String): Claims {
         return try {
             Jwts.parser()
-                    .setSigningKey(securityProperties.secretKey)
-                    .parseClaimsJws(token)
-                    .body
+                .setSigningKey(securityProperties.secretKey)
+                .parseClaimsJws(token)
+                .body
         } catch (e: Exception) {
-            when(e) {
+            when (e) {
                 is InvalidClaimException -> throw InvalidToken
                 is ExpiredJwtException -> throw ExpiredToken
                 else -> throw InternalServerError

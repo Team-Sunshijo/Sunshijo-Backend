@@ -7,16 +7,16 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.FilterType
 
 @Configuration
-@ComponentScan (
-        basePackages = ["com.sunshijo"],
-        includeFilters = [
-            Filter (
-                    type = FilterType.ANNOTATION,
-                    classes = [
-                        UseCase::class,
-                    ]
-            )
-        ]
+@ComponentScan(
+    basePackages = ["com.sunshijo"],
+    includeFilters = [
+        Filter(
+            type = FilterType.ANNOTATION,
+            classes = [
+                UseCase::class,
+            ]
+        )
+    ]
 )
 class AnnotationConfig {
 }

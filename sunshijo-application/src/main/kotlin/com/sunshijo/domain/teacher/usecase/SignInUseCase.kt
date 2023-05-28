@@ -14,11 +14,11 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 
 @UseCase
-open class SignInUseCase (
-        private val queryUserPort: QueryUserPort,
-        private val userJwtPort: UserJwtPort,
-        private val commandRefreshPort: CommandRefreshPort,
-        private val userSecurityPort: UserSecurityPort
+open class SignInUseCase(
+    private val queryUserPort: QueryUserPort,
+    private val userJwtPort: UserJwtPort,
+    private val commandRefreshPort: CommandRefreshPort,
+    private val userSecurityPort: UserSecurityPort
 ) : SignInPort {
 
     override fun signIn(request: DomainSignInRequest): SignInResponse {
@@ -31,17 +31,17 @@ open class SignInUseCase (
         val tokenResponse = userJwtPort.provideBothToken(user.id)
 
         commandRefreshPort.saveRefreshToken(
-                RefreshToken(
-                        id = user.id.toString(),
-                        refreshToken = tokenResponse.refreshToken,
-                        ttl = tokenResponse.accessTokenExp.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli()
-                )
+            RefreshToken(
+                id = user.id.toString(),
+                refreshToken = tokenResponse.refreshToken,
+                ttl = tokenResponse.accessTokenExp.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli()
+            )
         )
 
         return SignInResponse(
-                accessToken = tokenResponse.accessToken,
-                refreshToken = tokenResponse.refreshToken,
-                accessTokenExp = tokenResponse.accessTokenExp
+            accessToken = tokenResponse.accessToken,
+            refreshToken = tokenResponse.refreshToken,
+            accessTokenExp = tokenResponse.accessTokenExp
         )
     }
 }

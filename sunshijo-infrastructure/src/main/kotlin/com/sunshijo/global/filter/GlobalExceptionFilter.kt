@@ -11,14 +11,14 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class GlobalExceptionFilter (
-        private val objectMapper: ObjectMapper
+class GlobalExceptionFilter(
+    private val objectMapper: ObjectMapper
 ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
-            request: HttpServletRequest,
-            response: HttpServletResponse,
-            filterChain: FilterChain
+        request: HttpServletRequest,
+        response: HttpServletResponse,
+        filterChain: FilterChain
     ) {
         try {
             filterChain.doFilter(request, response)
@@ -36,7 +36,8 @@ class GlobalExceptionFilter (
         response.status = errorProperty.status
         response.contentType = MediaType.APPLICATION_JSON_VALUE
         response.characterEncoding = StandardCharsets.UTF_8.toString()
-        response.writer.write(objectMapper.writeValueAsString(errorProperty)
+        response.writer.write(
+            objectMapper.writeValueAsString(errorProperty)
         )
     }
 }
