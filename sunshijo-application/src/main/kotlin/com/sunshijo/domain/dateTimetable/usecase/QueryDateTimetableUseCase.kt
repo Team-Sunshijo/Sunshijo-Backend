@@ -10,7 +10,7 @@ import java.time.LocalDate
 
 @UseCase
 open class QueryDateTimetableUseCase(
-        private val queryDateTimetablePort: QueryDateTimetablePort
+    private val queryDateTimetablePort: QueryDateTimetablePort
 ) : QueryDateTimetableListPort {
 
     override fun execute(grade: Int, classNum: Int): QueryDateTimetableListResponse {
@@ -21,16 +21,16 @@ open class QueryDateTimetableUseCase(
         val timetableList = queryDateTimetablePort.queryDateTimetableList(grade, classNum, Date.valueOf(monday), Date.valueOf(friday))
 
         return QueryDateTimetableListResponse(
-                timetableList = timetableList
-                        .map {
-                            TimetableResponse(
-                                    grade = it.grade,
-                                    classNum = it.classNum,
-                                    period = it.period,
-                                    weekOfDate = it.weekOfDate,
-                                    subject = it.subject
-                            )
-                        }
+            timetableList = timetableList
+                .map {
+                    TimetableResponse(
+                        grade = it.grade,
+                        classNum = it.classNum,
+                        period = it.period,
+                        weekOfDate = it.weekOfDate,
+                        subject = it.subject
+                    )
+                }
         )
 
     }

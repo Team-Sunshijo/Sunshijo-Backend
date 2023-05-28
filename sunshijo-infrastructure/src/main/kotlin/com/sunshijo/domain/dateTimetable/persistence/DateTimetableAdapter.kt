@@ -6,7 +6,7 @@ import com.sunshijo.domain.dateTimetable.persistence.vo.QQueryDateTimetableVO
 import com.sunshijo.domain.dateTimetable.persistence.vo.QueryDateTimetableVO
 import com.sunshijo.domain.dateTimetable.spi.DateTimetablePort
 import com.sunshijo.global.annotation.Adapter
-import java.util.*
+import java.sql.Date
 
 @Adapter
 class DateTimetableAdapter(

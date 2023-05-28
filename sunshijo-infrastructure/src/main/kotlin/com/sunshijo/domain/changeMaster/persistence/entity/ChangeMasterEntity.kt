@@ -8,23 +8,24 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "tbl_changeMaster")
-class ChangeMasterEntity (
+class ChangeMasterEntity(
 
-        id: Long,
+    id: Long,
 
-        reason: String,
+    reason: String,
 
-        confirmed: Confirmed,
+    confirmed: Confirmed,
 
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "teacher_id", nullable = false)
-        val teacherEntity: TeacherEntity
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    val teacherEntity: TeacherEntity
 
 ) : BaseIDEntity(id) {
 
     @field:NotNull
     val reason = reason
 
+    @Enumerated(EnumType.STRING)
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(10)")
     val confirmed = confirmed
