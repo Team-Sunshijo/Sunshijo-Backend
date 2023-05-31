@@ -13,24 +13,24 @@ class JwtProvider(
     private val securityProperties: SecurityProperties
 ) : UserJwtPort {
 
-    private fun createAccessToken(userId: Long) =
-        generateToken(userId, JwtProperties.ACCESS, securityProperties.accessExp)
+    private fun createAccessToken(accountId: String) =
+        generateToken(accountId, JwtProperties.ACCESS, securityProperties.accessExp)
 
-    private fun createRefreshToken(userId: Long) =
-        generateToken(userId, JwtProperties.REFRESH, securityProperties.refreshExp)
+    private fun createRefreshToken(accountId: String) =
+        generateToken(accountId, JwtProperties.REFRESH, securityProperties.refreshExp)
 
-    private fun generateToken(userId: Long, type: String, ttl: Long) =
+    private fun generateToken(accountId: String, type: String, ttl: Long) =
         Jwts.builder()
             .signWith(SignatureAlgorithm.HS256, securityProperties.secretKey)
-            .setSubject(userId.toString())
+            .setSubject(accountId)
             .setHeaderParam("type", "jwt")
             .claim("type", type)
             .setExpiration(Date(System.currentTimeMillis() + securityProperties.accessExp * 1000))
             .compact()
 
-    override fun provideBothToken(userId: Long) = SpiTokenResponse(
-        accessToken = createAccessToken(userId),
-        refreshToken = createRefreshToken(userId),
+    override fun provideBothToken(accountId: String) = SpiTokenResponse(
+        accessToken = createAccessToken(accountId),
+        refreshToken = createRefreshToken(accountId),
         accessTokenExp = LocalDateTime.now().plusSeconds(securityProperties.accessExp)
     )
 }
