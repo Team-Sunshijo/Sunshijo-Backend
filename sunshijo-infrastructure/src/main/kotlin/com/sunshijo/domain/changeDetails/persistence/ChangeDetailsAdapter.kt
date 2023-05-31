@@ -1,6 +1,10 @@
 package com.sunshijo.domain.changeDetails.persistence
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import com.sunshijo.domain.changeDetails.api.dto.request.TimetableList
+import com.sunshijo.domain.changeDetails.domain.ChangeDetails
+import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
+import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsVO
 import com.sunshijo.domain.changeDetails.spi.ChangeDetailsPort
@@ -13,7 +17,9 @@ import java.sql.Date
 
 @Adapter
 class ChangeDetailsAdapter(
-    private val jpaQueryFactory: JPAQueryFactory
+    private val jpaQueryFactory: JPAQueryFactory,
+    private val changeDetailsRepository: ChangeDetailsRepository,
+    private val changeDetailsMapper: ChangeDetailsMapper
 ) : ChangeDetailsPort {
 
     override fun queryChangeDetailsList(grade: Int, classNum: Int, today: Date): List<ChangeDetailsVO> =
@@ -43,4 +49,20 @@ class ChangeDetailsAdapter(
             )
             .orderBy(dateTimetableEntity.period.asc())
             .fetch()
+
+    override fun saveTimetableDetails(changeDetailsList: List<TimetableList>, changeMasterId: Long) {
+        val changeDetailsEntities = changeDetailsList.map {
+            changeDetailsMapper.toEntity(
+                ChangeDetails(
+                    status = REQUESTING,
+                    division = it.division,
+                    changeMasterId = changeMasterId,
+                    teacherId = it.changeTeacherId,
+                    requestTimetableId = it.requestTimetableId,
+                    changeTimetableId = it.changeTimetableId
+                )
+            )
+        }
+        changeDetailsRepository.saveAll(changeDetailsEntities)
+    }
 }

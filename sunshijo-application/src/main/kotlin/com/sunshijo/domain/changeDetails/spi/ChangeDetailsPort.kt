@@ -1,4 +1,4 @@
 package com.sunshijo.domain.changeDetails.spi
 
-interface ChangeDetailsPort : QueryChangeDetailsPort {
+interface ChangeDetailsPort : QueryChangeDetailsPort, CommandChangeDetailsPort {
 }

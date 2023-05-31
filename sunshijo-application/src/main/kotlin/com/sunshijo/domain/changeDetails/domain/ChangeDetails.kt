@@ -8,7 +8,7 @@ import com.sunshijo.domain.teacher.domain.Teacher
 @Aggregate
 class ChangeDetails(
 
-    val id: Long,
+    val id: Long = 0,
 
     val status: Status,
 
