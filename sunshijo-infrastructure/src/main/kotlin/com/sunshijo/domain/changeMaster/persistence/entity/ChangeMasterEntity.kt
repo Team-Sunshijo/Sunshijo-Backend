@@ -4,6 +4,7 @@ import com.sunshijo.domain.changeMaster.domain.Confirmed
 import com.sunshijo.domain.teacher.persistence.entity.TeacherEntity
 import com.sunshijo.global.entity.BaseIDEntity
 import org.jetbrains.annotations.NotNull
+import java.sql.Date
 import javax.persistence.*
 
 @Entity
@@ -16,6 +17,8 @@ class ChangeMasterEntity(
 
     confirmed: Confirmed,
 
+    date: Date,
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id", nullable = false)
     val teacherEntity: TeacherEntity
@@ -23,10 +26,13 @@ class ChangeMasterEntity(
 ) : BaseIDEntity(id) {
 
     @field:NotNull
-    val reason = reason
+    var reason = reason
 
     @Enumerated(EnumType.STRING)
     @field:NotNull
     @Column(columnDefinition = "VARCHAR(10)")
-    val confirmed = confirmed
+    var confirmed = confirmed
+
+    @field:NotNull
+    var date = date
 }

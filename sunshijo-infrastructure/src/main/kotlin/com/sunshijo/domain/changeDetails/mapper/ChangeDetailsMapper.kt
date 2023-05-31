@@ -10,7 +10,9 @@ import com.sunshijo.domain.teacher.persistence.TeacherRepository
 import com.sunshijo.global.entity.GenericMapper
 import com.sunshijo.global.exception.UserNotFoundException
 import org.springframework.data.repository.findByIdOrNull
+import org.springframework.stereotype.Component
 
+@Component
 class ChangeDetailsMapper(
     private val changeMasterRepository: ChangeMasterRepository,
     private val teacherRepository: TeacherRepository,

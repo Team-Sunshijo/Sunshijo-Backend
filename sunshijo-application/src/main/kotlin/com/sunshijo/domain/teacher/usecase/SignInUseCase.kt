@@ -28,11 +28,11 @@ open class SignInUseCase(
             throw PasswordMismatchException
         }
 
-        val tokenResponse = userJwtPort.provideBothToken(user.id)
+        val tokenResponse = userJwtPort.provideBothToken(user.accountId)
 
         commandRefreshPort.saveRefreshToken(
             RefreshToken(
-                id = user.id.toString(),
+                id = user.accountId,
                 refreshToken = tokenResponse.refreshToken,
                 ttl = tokenResponse.accessTokenExp.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli()
             )
