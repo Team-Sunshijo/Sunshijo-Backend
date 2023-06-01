@@ -71,7 +71,7 @@ internal class SignInUseCaseTest : DescribeSpec({
                 val expiresIn = LocalDateTime.now().plusHours(1)
                 val tokenResponse = SpiTokenResponse(accessToken, refreshToken, expiresIn)
 
-                every { userJwtPort.provideBothToken(teacherId.toString()) } returns tokenResponse
+                every { userJwtPort.provideBothToken(accountId) } returns tokenResponse
 
                 val result = signInUseCase.signIn(request)
 
