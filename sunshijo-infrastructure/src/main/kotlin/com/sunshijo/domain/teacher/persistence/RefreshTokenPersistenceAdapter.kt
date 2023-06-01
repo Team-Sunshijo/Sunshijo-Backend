@@ -1,6 +1,7 @@
 package com.sunshijo.domain.teacher.persistence
 
 import com.sunshijo.domain.teacher.domain.RefreshToken
+import com.sunshijo.domain.teacher.exception.RefreshTokenNotFoundException
 import com.sunshijo.domain.teacher.mapper.RefreshTokenMapper
 import com.sunshijo.domain.teacher.spi.RefreshTokenPort
 import com.sunshijo.global.annotation.Adapter
@@ -13,5 +14,11 @@ class RefreshTokenPersistenceAdapter(
 
     override fun saveRefreshToken(refreshToken: RefreshToken) {
         refreshTokenRepository.save(refreshTokenMapper.toEntity(refreshToken))
+    }
+
+    override fun queryRefreshTokenByToken(token: String): RefreshToken {
+        return refreshTokenMapper.toDomain(
+            refreshTokenRepository.findByRefreshToken(token) ?: throw RefreshTokenNotFoundException
+        )
     }
 }
