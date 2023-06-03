@@ -24,7 +24,7 @@ class ChangeDetailsEntity(
     val changeMasterEntity: ChangeMasterEntity,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "teacher_id", nullable = true)
+    @JoinColumn(name = "teacher_id", nullable = false)
     val teacherEntity: TeacherEntity,
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -32,8 +32,8 @@ class ChangeDetailsEntity(
     val requestTimetableEntity: DateTimetableEntity,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "changeTimetable_id", nullable = true)
-    val changeTimetableEntity: DateTimetableEntity
+    @JoinColumn(name = "changeTimetable_id")
+    val changeTimetableEntity: DateTimetableEntity?
 
 ) : BaseIDEntity(id) {
 

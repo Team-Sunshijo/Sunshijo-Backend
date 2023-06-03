@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class ChangeDetailsWebAdapter(
     private val queryChangeDetailsListPort: QueryChangeDetailsListPort,
-    private val createChangeDetailsPort: CreateChangeDetailsPort
+    private val createChangeDetailsPort: CreateChangeDetailsPort,
 ) {
 
     @GetMapping

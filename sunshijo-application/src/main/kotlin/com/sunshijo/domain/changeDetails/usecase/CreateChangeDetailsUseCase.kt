@@ -24,6 +24,8 @@ open class CreateChangeDetailsUseCase (
 
         val changeMaster = commandMasterPort.saveCommandMaster(teacher.id, request.reason, date = Date.valueOf(date))
 
+        commandChangeDetailsPort.saveMakeUpDetails(request.makeUpList, changeMaster.id)
+
         commandChangeDetailsPort.saveTimetableDetails(request.timetableList, changeMaster.id)
     }
 }

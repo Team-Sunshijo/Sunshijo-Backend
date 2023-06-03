@@ -1,9 +1,6 @@
 package com.sunshijo.domain.dateTimetable.persistence
 
 import com.querydsl.jpa.impl.JPAQueryFactory
-import com.sunshijo.domain.changeDetails.api.dto.request.ChangeDetailsMakeUpRequest
-import com.sunshijo.domain.changeDetails.api.dto.request.MakeUpList
-import com.sunshijo.domain.dateTimetable.domain.DateTimetable
 import com.sunshijo.domain.dateTimetable.mapper.DateTimetableMapper
 import com.sunshijo.domain.dateTimetable.persistence.entity.QDateTimetableEntity.dateTimetableEntity
 import com.sunshijo.domain.dateTimetable.persistence.vo.QQueryDateTimetableVO
