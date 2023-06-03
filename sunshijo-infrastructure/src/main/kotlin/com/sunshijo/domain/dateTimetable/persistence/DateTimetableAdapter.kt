@@ -1,6 +1,8 @@
 package com.sunshijo.domain.dateTimetable.persistence
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import com.sunshijo.domain.changeDetails.api.dto.request.ChangeDetailsMakeUpRequest
+import com.sunshijo.domain.changeDetails.api.dto.request.MakeUpList
 import com.sunshijo.domain.dateTimetable.domain.DateTimetable
 import com.sunshijo.domain.dateTimetable.mapper.DateTimetableMapper
 import com.sunshijo.domain.dateTimetable.persistence.entity.QDateTimetableEntity.dateTimetableEntity
@@ -36,10 +38,4 @@ class DateTimetableAdapter(
             )
             .orderBy(dateTimetableEntity.weekOfDate.asc(), dateTimetableEntity.period.asc())
             .fetch()
-
-    override fun queryChangeTimetable(grade: Int, classNum: Int, date: Date, period: Int): DateTimetable {
-        return dateTimetableMapper.toDomain(
-            dateTimetableRepository.findByGradeAndClassNumAndDateAndPeriod(grade, classNum, date, period)
-        )
-    }
 }

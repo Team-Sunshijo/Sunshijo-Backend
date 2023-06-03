@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository
 import java.sql.Date
 
 interface DateTimetableRepository : CrudRepository<DateTimetableEntity, Long> {
-
-    fun findByGradeAndClassNumAndDateAndPeriod(grade: Int, classNum: Int, date: Date, period: Int): DateTimetableEntity
 }
