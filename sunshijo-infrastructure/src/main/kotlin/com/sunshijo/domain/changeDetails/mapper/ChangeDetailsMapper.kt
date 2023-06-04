@@ -1,6 +1,7 @@
 package com.sunshijo.domain.changeDetails.mapper
 
 import com.sunshijo.domain.changeDetails.domain.ChangeDetails
+import com.sunshijo.domain.changeDetails.domain.MakeUpClass
 import com.sunshijo.domain.changeDetails.persistence.entity.ChangeDetailsEntity
 import com.sunshijo.domain.changeMaster.exception.ChangeMasterNotFoundException
 import com.sunshijo.domain.changeMaster.persistence.ChangeMasterRepository
@@ -27,7 +28,7 @@ class ChangeDetailsMapper(
             changeMasterId = it.changeMasterEntity.id,
             teacherId = it.teacherEntity.id,
             requestTimetableId = it.requestTimetableEntity.id,
-            changeTimetableId = it.changeTimetableEntity.id
+            changeTimetableId = it.changeTimetableEntity!!.id
         )
     }
 
@@ -52,6 +53,27 @@ class ChangeDetailsMapper(
             teacherEntity = teacher,
             requestTimetableEntity = requestTimetable,
             changeTimetableEntity = changeTimetable
+        )
+    }
+
+    fun makeUpClassToEntity(domain: MakeUpClass): ChangeDetailsEntity {
+
+        val changeMaster =
+            changeMasterRepository.findByIdOrNull(domain.changeMasterId) ?: throw ChangeMasterNotFoundException
+
+        val teacher = teacherRepository.findByIdOrNull(domain.teacherId) ?: throw UserNotFoundException
+
+        val requestTimetable =
+            dateTimetableRepository.findByIdOrNull(domain.requestTimetableId) ?: throw DateTimetableNotFoundException
+
+        return ChangeDetailsEntity(
+            id = domain.id,
+            status = domain.status,
+            division = domain.division,
+            changeMasterEntity = changeMaster,
+            teacherEntity = teacher,
+            requestTimetableEntity = requestTimetable,
+            changeTimetableEntity = null
         )
     }
 }

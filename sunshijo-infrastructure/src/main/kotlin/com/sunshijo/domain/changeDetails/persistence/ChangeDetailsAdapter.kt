@@ -1,8 +1,12 @@
 package com.sunshijo.domain.changeDetails.persistence
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import com.sunshijo.domain.changeDetails.api.dto.request.MakeUpList
 import com.sunshijo.domain.changeDetails.api.dto.request.TimetableList
 import com.sunshijo.domain.changeDetails.domain.ChangeDetails
+import com.sunshijo.domain.changeDetails.domain.Division.MAKEUPCLASS
+import com.sunshijo.domain.changeDetails.domain.Division.REPLACE
+import com.sunshijo.domain.changeDetails.domain.MakeUpClass
 import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
 import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
@@ -55,7 +59,7 @@ class ChangeDetailsAdapter(
             changeDetailsMapper.toEntity(
                 ChangeDetails(
                     status = REQUESTING,
-                    division = it.division,
+                    division = REPLACE,
                     changeMasterId = changeMasterId,
                     teacherId = it.changeTeacherId,
                     requestTimetableId = it.requestTimetableId,
@@ -64,5 +68,20 @@ class ChangeDetailsAdapter(
             )
         }
         changeDetailsRepository.saveAll(changeDetailsEntities)
+    }
+
+    override fun saveMakeUpDetails(makeUpDetailsList: List<MakeUpList>, changeMasterId: Long) {
+        val changeMakeUpDetails = makeUpDetailsList.map {
+            changeDetailsMapper.makeUpClassToEntity(
+                MakeUpClass(
+                    status = REQUESTING,
+                    division = MAKEUPCLASS,
+                    changeMasterId = changeMasterId,
+                    teacherId = it.changeTeacherId,
+                    requestTimetableId = it.makeUpTimetableId
+                )
+            )
+        }
+        changeDetailsRepository.saveAll(changeMakeUpDetails)
     }
 }
