@@ -1,6 +1,8 @@
 package com.sunshijo.domain.dateTimetable.persistence
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import com.sunshijo.domain.dateTimetable.api.dto.request.QueryTimetableIdRequest
+import com.sunshijo.domain.dateTimetable.domain.DateTimetable
 import com.sunshijo.domain.dateTimetable.mapper.DateTimetableMapper
 import com.sunshijo.domain.dateTimetable.persistence.entity.QDateTimetableEntity.dateTimetableEntity
 import com.sunshijo.domain.dateTimetable.persistence.vo.QQueryDateTimetableVO
@@ -35,4 +37,10 @@ class DateTimetableAdapter(
             )
             .orderBy(dateTimetableEntity.weekOfDate.asc(), dateTimetableEntity.period.asc())
             .fetch()
+
+    override fun queryDateTimetable(request: QueryTimetableIdRequest): DateTimetable {
+        return dateTimetableMapper.toDomain(dateTimetableRepository.findByGradeAndClassNumAndPeriodAndSubjectAndDate(
+            request.grade, request.classNum, request.period, request.subject, request.date
+        ))
+    }
 }
