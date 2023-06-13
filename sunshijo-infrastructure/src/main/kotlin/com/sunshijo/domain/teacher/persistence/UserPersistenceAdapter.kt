@@ -25,4 +25,9 @@ class UserPersistenceAdapter(
     override fun existsByAccountId(accountId: String): Boolean =
         teacherRepository.existsByAccountId(accountId)
 
+    override fun queryTeacher(): List<Teacher> {
+        return teacherRepository.findAll().map {
+            teacherMapper.toDomain(it)
+        }
+    }
 }

@@ -19,7 +19,6 @@ open class QueryChangeDetailsUseCase(
 
         val changeDetailsList = queryChangeDetailsPort.queryChangeDetailsList(grade, classNum, Date.valueOf(today))
 
-        println(changeDetailsList)
         return QueryChangeDetailsListResponse(
             changeDetailsList = changeDetailsList
                 .map {

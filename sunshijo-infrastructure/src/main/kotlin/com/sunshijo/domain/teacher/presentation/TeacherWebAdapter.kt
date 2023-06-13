@@ -2,13 +2,16 @@ package com.sunshijo.domain.teacher.presentation
 
 import com.sunshijo.domain.teacher.api.SignInPort
 import com.sunshijo.domain.teacher.api.SignUpPort
+import com.sunshijo.domain.teacher.api.TeacherListPort
 import com.sunshijo.domain.teacher.api.TokenRefreshPort
 import com.sunshijo.domain.teacher.api.dto.request.DomainSignInRequest
 import com.sunshijo.domain.teacher.api.dto.request.DomainSignUpRequest
+import com.sunshijo.domain.teacher.api.dto.response.QueryTeacherListResponse
 import com.sunshijo.domain.teacher.api.dto.response.SignInResponse
 import com.sunshijo.domain.teacher.api.dto.response.TokenResponse
 import com.sunshijo.domain.teacher.presentation.dto.request.WebSignInRequest
 import com.sunshijo.domain.teacher.presentation.dto.request.WebSignUpRequest
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -22,7 +25,8 @@ import javax.validation.Valid
 class TeacherWebAdapter(
     private val signInPort: SignInPort,
     private val signUpPort: SignUpPort,
-    private val tokenRefreshPort: TokenRefreshPort
+    private val tokenRefreshPort: TokenRefreshPort,
+    private val teacherListPort: TeacherListPort
 ) {
 
     @PostMapping("/auth")
@@ -50,5 +54,10 @@ class TeacherWebAdapter(
                 signUpCode = request.signUpCode
             )
         )
+    }
+
+    @GetMapping("/id")
+    fun teacherList(): QueryTeacherListResponse {
+        return teacherListPort.execute()
     }
 }
