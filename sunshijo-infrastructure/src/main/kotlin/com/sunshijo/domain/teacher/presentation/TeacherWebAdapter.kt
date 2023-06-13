@@ -56,7 +56,7 @@ class TeacherWebAdapter(
         )
     }
 
-    @GetMapping("/id")
+    @GetMapping("/list")
     fun teacherList(): QueryTeacherListResponse {
         return teacherListPort.execute()
     }
