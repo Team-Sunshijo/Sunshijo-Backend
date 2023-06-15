@@ -2,8 +2,11 @@ package com.sunshijo.domain.changeDetails.presentation
 
 import com.sunshijo.domain.changeDetails.api.CreateChangeDetailsPort
 import com.sunshijo.domain.changeDetails.api.QueryChangeDetailsListPort
+import com.sunshijo.domain.changeDetails.api.QueryChangeDetailsManagementReplacePort
 import com.sunshijo.domain.changeDetails.api.dto.request.ChangeDetailsRequest
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsListResponse
+import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsManagementReplaceResponse
+import com.sunshijo.domain.changeDetails.domain.Status
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 class ChangeDetailsWebAdapter(
     private val queryChangeDetailsListPort: QueryChangeDetailsListPort,
     private val createChangeDetailsPort: CreateChangeDetailsPort,
+    private val queryChangeDetailsManagementReplacePort: QueryChangeDetailsManagementReplacePort
 ) {
 
     @GetMapping
@@ -30,4 +34,10 @@ class ChangeDetailsWebAdapter(
     fun createChangeDetails(@RequestBody request: ChangeDetailsRequest) {
         createChangeDetailsPort.execute(request)
     }
+
+    @GetMapping("/management/replace")
+    fun queryChangeDetailsManagement(@RequestParam status: String): QueryChangeDetailsManagementReplaceResponse {
+        return queryChangeDetailsManagementReplacePort.execute(Status.valueOf(status))
+    }
+
 }
