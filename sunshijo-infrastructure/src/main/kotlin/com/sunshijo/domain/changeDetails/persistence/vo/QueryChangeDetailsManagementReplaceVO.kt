@@ -7,6 +7,8 @@ import java.sql.Date
 
 class QueryChangeDetailsManagementReplaceVO @QueryProjection constructor(
 
+    changeDetailsId: Long,
+
     date: Date,
 
     grade: Int,
@@ -23,6 +25,7 @@ class QueryChangeDetailsManagementReplaceVO @QueryProjection constructor(
 
     status: Status
 ) : ChangeDetailsManagementReplaceVO(
+    changeDetailsId = changeDetailsId,
     date = date,
     grade = grade,
     classNum = classNum,

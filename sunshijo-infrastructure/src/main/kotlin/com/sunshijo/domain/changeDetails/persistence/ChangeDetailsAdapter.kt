@@ -94,6 +94,7 @@ class ChangeDetailsAdapter(
         jpaQueryFactory
             .select(
                 QQueryChangeDetailsManagementReplaceVO(
+                    changeDetailsEntity.id,
                     changeDetailsEntity.requestTimetableEntity.date,
                     changeDetailsEntity.requestTimetableEntity.grade,
                     changeDetailsEntity.requestTimetableEntity.classNum,

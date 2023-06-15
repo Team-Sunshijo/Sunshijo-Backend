@@ -23,6 +23,7 @@ open class QueryChangeDetailsManagementReplaceListUseCase (
         return QueryChangeDetailsManagementReplaceResponse(
             managementList = managementReplaceList.map {
                 ManagementReplaceResponse(
+                    id = it.changeDetailsId,
                     requestDate = it.date,
                     grade = it.grade,
                     classNum = it.classNum,

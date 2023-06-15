@@ -9,6 +9,8 @@ data class QueryChangeDetailsManagementReplaceResponse(
 
 class ManagementReplaceResponse(
 
+    val id: Long,
+
     val requestDate: Date,
 
     val grade: Int,
