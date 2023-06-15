@@ -3,11 +3,11 @@ package com.sunshijo.domain.changeDetails.api.dto.response
 import com.sunshijo.domain.changeDetails.domain.Status
 import java.sql.Date
 
-data class QueryChangeDetailsManagementReplaceResponse(
-    val managementList: List<ManagementReplaceResponse>
+data class QueryChangeDetailsManagementMakeUpClassResponse (
+    val managementList: List<ManagementMakeUpClassResponse>
 )
 
-class ManagementReplaceResponse(
+class ManagementMakeUpClassResponse(
 
     val requestDate: Date,
 
@@ -16,8 +16,6 @@ class ManagementReplaceResponse(
     val classNum: Int,
 
     val requestSubject: String,
-
-    val changeSubject: String,
 
     val reason: String,
 

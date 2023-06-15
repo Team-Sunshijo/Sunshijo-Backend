@@ -11,9 +11,11 @@ import com.sunshijo.domain.changeDetails.domain.Status
 import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
 import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
+import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementMakeUpClassVO
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementReplaceVO
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsVO
 import com.sunshijo.domain.changeDetails.spi.ChangeDetailsPort
+import com.sunshijo.domain.changeDetails.vo.ChangeDetailsManagementMakeUpClassVO
 import com.sunshijo.domain.changeDetails.vo.ChangeDetailsManagementReplaceVO
 import com.sunshijo.domain.changeDetails.vo.ChangeDetailsVO
 import com.sunshijo.domain.changeMaster.domain.Confirmed.ACCEPT
@@ -108,6 +110,29 @@ class ChangeDetailsAdapter(
             .where(
                 changeDetailsEntity.teacherEntity.id.eq(teacherId)
                     .and(changeDetailsEntity.division.eq(REPLACE))
+                    .and(changeDetailsEntity.status.eq(status))
+            )
+            .fetch()
+
+    override fun queryChangeDetailsManagementMakeUpClassList(teacherId: Long, status: Status): List<ChangeDetailsManagementMakeUpClassVO> =
+        jpaQueryFactory
+            .select(
+                QQueryChangeDetailsManagementMakeUpClassVO(
+                    changeDetailsEntity.requestTimetableEntity.date,
+                    changeDetailsEntity.requestTimetableEntity.grade,
+                    changeDetailsEntity.requestTimetableEntity.classNum,
+                    changeDetailsEntity.requestTimetableEntity.subject,
+                    changeMasterEntity.reason,
+                    changeMasterEntity.teacherEntity.name,
+                    changeDetailsEntity.status
+                )
+            )
+            .from(changeDetailsEntity)
+            .innerJoin(changeDetailsEntity.changeMasterEntity, changeMasterEntity)
+            .innerJoin(changeDetailsEntity.requestTimetableEntity, dateTimetableEntity)
+            .where(
+                changeDetailsEntity.teacherEntity.id.eq(teacherId)
+                    .and(changeDetailsEntity.division.eq(MAKEUPCLASS))
                     .and(changeDetailsEntity.status.eq(status))
             )
             .fetch()

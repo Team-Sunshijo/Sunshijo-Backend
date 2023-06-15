@@ -2,9 +2,11 @@ package com.sunshijo.domain.changeDetails.presentation
 
 import com.sunshijo.domain.changeDetails.api.CreateChangeDetailsPort
 import com.sunshijo.domain.changeDetails.api.QueryChangeDetailsListPort
+import com.sunshijo.domain.changeDetails.api.QueryChangeDetailsManagementMakeUpClassPort
 import com.sunshijo.domain.changeDetails.api.QueryChangeDetailsManagementReplacePort
 import com.sunshijo.domain.changeDetails.api.dto.request.ChangeDetailsRequest
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsListResponse
+import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsManagementMakeUpClassResponse
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsManagementReplaceResponse
 import com.sunshijo.domain.changeDetails.domain.Status
 import org.springframework.http.HttpStatus
@@ -21,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController
 class ChangeDetailsWebAdapter(
     private val queryChangeDetailsListPort: QueryChangeDetailsListPort,
     private val createChangeDetailsPort: CreateChangeDetailsPort,
-    private val queryChangeDetailsManagementReplacePort: QueryChangeDetailsManagementReplacePort
+    private val queryChangeDetailsManagementReplacePort: QueryChangeDetailsManagementReplacePort,
+    private val queryChangeDetailsManagementMakeUpClassPort: QueryChangeDetailsManagementMakeUpClassPort
 ) {
 
     @GetMapping
@@ -35,9 +38,13 @@ class ChangeDetailsWebAdapter(
         createChangeDetailsPort.execute(request)
     }
 
-    @GetMapping("/management/replace")
-    fun queryChangeDetailsManagement(@RequestParam status: String): QueryChangeDetailsManagementReplaceResponse {
+    @GetMapping("/replace")
+    fun queryChangeDetailsReplaceManagement(@RequestParam status: String): QueryChangeDetailsManagementReplaceResponse {
         return queryChangeDetailsManagementReplacePort.execute(Status.valueOf(status))
     }
 
+    @GetMapping("/makeUpClass")
+    fun queryChangeDetailsMakeUpClassManagement(@RequestParam status: String): QueryChangeDetailsManagementMakeUpClassResponse {
+        return queryChangeDetailsManagementMakeUpClassPort.execute(Status.valueOf(status))
+    }
 }
