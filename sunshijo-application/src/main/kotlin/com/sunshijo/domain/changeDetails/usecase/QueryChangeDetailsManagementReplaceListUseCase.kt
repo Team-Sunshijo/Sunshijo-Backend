@@ -9,7 +9,7 @@ import com.sunshijo.domain.changeDetails.spi.QueryChangeDetailsPort
 import com.sunshijo.domain.teacher.spi.UserSecurityPort
 
 @UseCase
-open class QueryChangeDetailsManagementListUseCase (
+open class QueryChangeDetailsManagementReplaceListUseCase (
     private val userSecurityPort: UserSecurityPort,
     private val queryChangeDetailsPort: QueryChangeDetailsPort
 ) : QueryChangeDetailsManagementReplacePort {

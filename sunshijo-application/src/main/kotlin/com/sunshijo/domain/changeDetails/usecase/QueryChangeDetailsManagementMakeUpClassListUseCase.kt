@@ -9,7 +9,7 @@ import com.sunshijo.domain.changeDetails.spi.QueryChangeDetailsPort
 import com.sunshijo.domain.teacher.spi.UserSecurityPort
 
 @UseCase
-open class QueryChangeDetailsManagementMakeUpClassUseCase (
+open class QueryChangeDetailsManagementMakeUpClassListUseCase (
     private val userSecurityPort: UserSecurityPort,
     private val queryChangeDetailsPort: QueryChangeDetailsPort
 ) : QueryChangeDetailsManagementMakeUpClassPort {
@@ -23,6 +23,7 @@ open class QueryChangeDetailsManagementMakeUpClassUseCase (
         return QueryChangeDetailsManagementMakeUpClassResponse(
             managementList = managementList.map {
                 ManagementMakeUpClassResponse(
+                    id = it.changeDetailsId,
                     requestDate = it.date,
                     grade = it.grade,
                     classNum = it.classNum,

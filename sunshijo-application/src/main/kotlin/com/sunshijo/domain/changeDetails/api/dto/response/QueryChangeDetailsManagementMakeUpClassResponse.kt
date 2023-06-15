@@ -9,6 +9,8 @@ data class QueryChangeDetailsManagementMakeUpClassResponse (
 
 class ManagementMakeUpClassResponse(
 
+    val id: Long,
+
     val requestDate: Date,
 
     val grade: Int,

@@ -5,6 +5,8 @@ import java.sql.Date
 
 open class ChangeDetailsManagementMakeUpClassVO (
 
+    val changeDetailsId: Long,
+
     val date: Date,
 
     val grade: Int,
