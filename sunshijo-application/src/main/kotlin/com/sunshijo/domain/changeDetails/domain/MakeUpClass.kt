@@ -1,12 +1,12 @@
 package com.sunshijo.domain.changeDetails.domain
 
-class MakeUpClass (
+class MakeUpClass(
 
     val id: Long = 0,
 
-    val status: Status,
+    var status: Status,
 
-    val division: Division,
+    var division: Division,
 
     val changeMasterId: Long,
 
@@ -14,4 +14,17 @@ class MakeUpClass (
 
     val requestTimetableId: Long,
 
-)
+    ) {
+    fun updateStatus(status: List<Status>): List<MakeUpClass> {
+        return status.map {
+            MakeUpClass(
+                id = this.id,
+                status = it,
+                division = this.division,
+                changeMasterId = this.changeMasterId,
+                teacherId = this.teacherId,
+                requestTimetableId = this.requestTimetableId
+            )
+        }
+    }
+}

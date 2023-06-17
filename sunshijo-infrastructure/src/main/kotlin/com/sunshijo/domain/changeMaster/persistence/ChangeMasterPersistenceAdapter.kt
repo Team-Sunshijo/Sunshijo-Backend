@@ -14,15 +14,16 @@ class ChangeMasterPersistenceAdapter(
 ) : ChangeMasterPort {
 
     override fun saveCommandMaster(teacherId: Long, reason: String, date: Date): ChangeMaster {
-        val changeMaster = changeMasterRepository.save(changeMasterRepository.save(changeMasterMapper.toEntity(
-            ChangeMaster(
-                reason = reason,
-                confirmed = REQUESTING,
-                date = date,
-                teacherId = teacherId
+        val changeMasterEntity = changeMasterRepository.save(
+            changeMasterMapper.toEntity(
+                ChangeMaster(
+                    reason = reason,
+                    confirmed = REQUESTING,
+                    date = date,
+                    teacherId = teacherId
+                )
             )
-        )))
-
-        return changeMasterMapper.toDomain(changeMaster)
+        )
+        return changeMasterMapper.toDomain(changeMasterEntity)
     }
 }

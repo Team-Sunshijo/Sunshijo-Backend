@@ -1,18 +1,15 @@
 package com.sunshijo.domain.changeDetails.domain
 
 import com.sunshijo.annotation.Aggregate
-import com.sunshijo.domain.changeMaster.domain.ChangeMaster
-import com.sunshijo.domain.dateTimetable.domain.DateTimetable
-import com.sunshijo.domain.teacher.domain.Teacher
 
 @Aggregate
 class ChangeDetails(
 
     val id: Long = 0,
 
-    val status: Status,
+    var status: Status,
 
-    val division: Division,
+    var division: Division,
 
     val changeMasterId: Long,
 
@@ -22,4 +19,18 @@ class ChangeDetails(
 
     val changeTimetableId: Long
 
-)
+) {
+    fun updateStatus(status: List<Status>): List<ChangeDetails> {
+        return status.map {
+            ChangeDetails(
+                id = this.id,
+                status = it,
+                division = this.division,
+                changeMasterId = this.changeMasterId,
+                teacherId = this.teacherId,
+                requestTimetableId = this.requestTimetableId,
+                changeTimetableId = this.changeTimetableId
+            )
+        }
+    }
+}

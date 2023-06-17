@@ -3,12 +3,14 @@ package com.sunshijo.domain.changeDetails.persistence
 import com.querydsl.jpa.impl.JPAQueryFactory
 import com.sunshijo.domain.changeDetails.api.dto.request.MakeUpList
 import com.sunshijo.domain.changeDetails.api.dto.request.TimetableList
+import com.sunshijo.domain.changeDetails.api.dto.request.UpdateStatus
 import com.sunshijo.domain.changeDetails.domain.ChangeDetails
 import com.sunshijo.domain.changeDetails.domain.Division.MAKEUPCLASS
 import com.sunshijo.domain.changeDetails.domain.Division.REPLACE
 import com.sunshijo.domain.changeDetails.domain.MakeUpClass
 import com.sunshijo.domain.changeDetails.domain.Status
 import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
+import com.sunshijo.domain.changeDetails.exception.ChangeDetailsNotFoundException
 import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementMakeUpClassVO
@@ -22,6 +24,7 @@ import com.sunshijo.domain.changeMaster.domain.Confirmed.ACCEPT
 import com.sunshijo.domain.changeMaster.persistence.entity.QChangeMasterEntity.changeMasterEntity
 import com.sunshijo.domain.dateTimetable.persistence.entity.QDateTimetableEntity.dateTimetableEntity
 import com.sunshijo.global.annotation.Adapter
+import org.springframework.data.repository.findByIdOrNull
 import java.sql.Date
 
 @Adapter
@@ -30,6 +33,59 @@ class ChangeDetailsAdapter(
     private val changeDetailsRepository: ChangeDetailsRepository,
     private val changeDetailsMapper: ChangeDetailsMapper
 ) : ChangeDetailsPort {
+
+    override fun queryChangeDetails(updateStatusRequest: List<UpdateStatus>): List<ChangeDetails> {
+        val changeDetails = updateStatusRequest.map {
+            changeDetailsRepository.findByIdOrNull(it.changeDetailsId)
+                ?: throw ChangeDetailsNotFoundException
+        }
+        return changeDetails.map {
+            changeDetailsMapper.toDomain(it)
+        }
+    }
+
+    override fun queryMakeUpClass(updateStatusRequest: List<UpdateStatus>): List<MakeUpClass> {
+        val changeDetails = updateStatusRequest.map {
+            changeDetailsRepository.findByIdOrNull(it.changeDetailsId)
+                ?: throw ChangeDetailsNotFoundException
+        }
+        return changeDetails.map {
+            changeDetailsMapper.makeUpClassToDomain(it)
+        }
+    }
+
+    override fun saveChangeDetailsList(changeDetails: List<ChangeDetails>) {
+        val changeDetailsEntity = changeDetails.map {
+            changeDetailsMapper.toEntity(
+                ChangeDetails(
+                    id = it.id,
+                    status = it.status,
+                    division = it.division,
+                    changeMasterId = it.changeMasterId,
+                    teacherId = it.teacherId,
+                    requestTimetableId = it.requestTimetableId,
+                    changeTimetableId = it.changeTimetableId
+                )
+            )
+        }
+        changeDetailsRepository.saveAll(changeDetailsEntity)
+    }
+
+    override fun saveMakeUpClassDetailsList(changeDetails: List<MakeUpClass>) {
+        val changeDetailsEntity = changeDetails.map {
+            changeDetailsMapper.makeUpClassToEntity(
+                MakeUpClass(
+                    id = it.id,
+                    status = it.status,
+                    division = it.division,
+                    changeMasterId = it.changeMasterId,
+                    teacherId = it.teacherId,
+                    requestTimetableId = it.requestTimetableId
+                )
+            )
+        }
+        changeDetailsRepository.saveAll(changeDetailsEntity)
+    }
 
     override fun queryChangeDetailsList(grade: Int, classNum: Int, today: Date): List<ChangeDetailsVO> =
         jpaQueryFactory
@@ -59,7 +115,7 @@ class ChangeDetailsAdapter(
             .orderBy(dateTimetableEntity.period.asc())
             .fetch()
 
-    override fun saveTimetableDetails(changeDetailsList: List<TimetableList>, changeMasterId: Long) {
+    override fun saveTimetableDetailsList(changeDetailsList: List<TimetableList>, changeMasterId: Long) {
         val changeDetailsEntities = changeDetailsList.map {
             changeDetailsMapper.toEntity(
                 ChangeDetails(
@@ -75,7 +131,7 @@ class ChangeDetailsAdapter(
         changeDetailsRepository.saveAll(changeDetailsEntities)
     }
 
-    override fun saveMakeUpDetails(makeUpDetailsList: List<MakeUpList>, changeMasterId: Long) {
+    override fun saveMakeUpDetailsList(makeUpDetailsList: List<MakeUpList>, changeMasterId: Long) {
         val changeMakeUpDetails = makeUpDetailsList.map {
             changeDetailsMapper.makeUpClassToEntity(
                 MakeUpClass(
@@ -90,7 +146,10 @@ class ChangeDetailsAdapter(
         changeDetailsRepository.saveAll(changeMakeUpDetails)
     }
 
-    override fun queryChangeDetailsManagementReplaceList(teacherId: Long, status: Status): List<ChangeDetailsManagementReplaceVO> =
+    override fun queryChangeDetailsManagementReplaceList(
+        teacherId: Long,
+        status: Status
+    ): List<ChangeDetailsManagementReplaceVO> =
         jpaQueryFactory
             .select(
                 QQueryChangeDetailsManagementReplaceVO(

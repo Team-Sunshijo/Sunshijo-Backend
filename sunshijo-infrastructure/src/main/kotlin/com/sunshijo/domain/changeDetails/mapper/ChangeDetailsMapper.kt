@@ -76,4 +76,15 @@ class ChangeDetailsMapper(
             changeTimetableEntity = null
         )
     }
+
+    fun makeUpClassToDomain(entity: ChangeDetailsEntity): MakeUpClass {
+        return MakeUpClass(
+            id = entity.id,
+            status = entity.status,
+            division = entity.division,
+            changeMasterId = entity.changeMasterEntity.id,
+            teacherId = entity.teacherEntity.id,
+            requestTimetableId = entity.requestTimetableEntity.id
+        )
+    }
 }
