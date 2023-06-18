@@ -28,7 +28,9 @@ open class QueryChangeDetailsManagementReplaceListUseCase (
                     grade = it.grade,
                     classNum = it.classNum,
                     requestSubject = it.requestSubject,
+                    requestPeriod = it.requestPeriod,
                     changeSubject = it.changeSubject,
+                    changePeriod = it.changePeriod,
                     reason = it.reason,
                     requestTeacher = it.teacher,
                     status = it.status

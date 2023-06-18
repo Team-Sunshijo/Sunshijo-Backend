@@ -13,6 +13,8 @@ open class ChangeDetailsManagementMakeUpClassVO (
 
     val classNum: Int,
 
+    val period: Int,
+
     val requestSubject: String,
 
     val reason: String,

@@ -17,7 +17,11 @@ class QueryChangeDetailsManagementReplaceVO @QueryProjection constructor(
 
     requestSubject: String,
 
+    requestPeriod: Int,
+
     changeSubject: String,
+
+    changePeriod: Int,
 
     reason: String,
 
@@ -30,7 +34,9 @@ class QueryChangeDetailsManagementReplaceVO @QueryProjection constructor(
     grade = grade,
     classNum = classNum,
     requestSubject = requestSubject,
+    requestPeriod = requestPeriod,
     changeSubject = changeSubject,
+    changePeriod = changePeriod,
     reason = reason,
     teacher = teacher,
     status = status

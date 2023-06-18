@@ -27,6 +27,7 @@ open class QueryChangeDetailsManagementMakeUpClassListUseCase (
                     requestDate = it.date,
                     grade = it.grade,
                     classNum = it.classNum,
+                    period = it.period,
                     requestSubject = it.requestSubject,
                     reason = it.reason,
                     requestTeacher = it.teacher,

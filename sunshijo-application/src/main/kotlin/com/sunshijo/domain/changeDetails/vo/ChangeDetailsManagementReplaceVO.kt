@@ -15,7 +15,11 @@ open class ChangeDetailsManagementReplaceVO (
 
     val requestSubject: String,
 
+    val requestPeriod: Int,
+
     val changeSubject: String,
+
+    val changePeriod: Int,
 
     val reason: String,
 

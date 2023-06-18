@@ -12,6 +12,7 @@ import com.sunshijo.domain.changeDetails.domain.Status
 import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
 import com.sunshijo.domain.changeDetails.exception.ChangeDetailsNotFoundException
 import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
+import com.sunshijo.domain.changeDetails.persistence.entity.ChangeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementMakeUpClassVO
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementReplaceVO
@@ -146,10 +147,7 @@ class ChangeDetailsAdapter(
         changeDetailsRepository.saveAll(changeMakeUpDetails)
     }
 
-    override fun queryChangeDetailsManagementReplaceList(
-        teacherId: Long,
-        status: Status
-    ): List<ChangeDetailsManagementReplaceVO> =
+    override fun queryChangeDetailsManagementReplaceList(teacherId: Long, status: Status): List<ChangeDetailsManagementReplaceVO> =
         jpaQueryFactory
             .select(
                 QQueryChangeDetailsManagementReplaceVO(
@@ -158,7 +156,9 @@ class ChangeDetailsAdapter(
                     changeDetailsEntity.requestTimetableEntity.grade,
                     changeDetailsEntity.requestTimetableEntity.classNum,
                     changeDetailsEntity.requestTimetableEntity.subject,
+                    changeDetailsEntity.requestTimetableEntity.period,
                     changeDetailsEntity.changeTimetableEntity.subject,
+                    changeDetailsEntity.changeTimetableEntity.period,
                     changeMasterEntity.reason,
                     changeMasterEntity.teacherEntity.name,
                     changeDetailsEntity.status
@@ -182,6 +182,7 @@ class ChangeDetailsAdapter(
                     changeDetailsEntity.requestTimetableEntity.date,
                     changeDetailsEntity.requestTimetableEntity.grade,
                     changeDetailsEntity.requestTimetableEntity.classNum,
+                    changeDetailsEntity.requestTimetableEntity.period,
                     changeDetailsEntity.requestTimetableEntity.subject,
                     changeMasterEntity.reason,
                     changeMasterEntity.teacherEntity.name,
@@ -197,4 +198,12 @@ class ChangeDetailsAdapter(
                     .and(changeDetailsEntity.status.eq(status))
             )
             .fetch()
+
+    override fun queryChangeDetailsByMasterId(changeMasterId: Long): List<ChangeDetails> {
+        TODO()
+    }
+
+    override fun queryMakeUpClassByMasterId(changeMasterId: Long): List<MakeUpClass> {
+        TODO("Not yet implemented")
+    }
 }
