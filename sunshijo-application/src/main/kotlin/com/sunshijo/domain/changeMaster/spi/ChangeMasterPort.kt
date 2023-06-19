@@ -1,4 +1,4 @@
 package com.sunshijo.domain.changeMaster.spi
 
-interface ChangeMasterPort : CommandMasterPort {
+interface ChangeMasterPort : CommandMasterPort, QueryChangeMasterPort {
 }

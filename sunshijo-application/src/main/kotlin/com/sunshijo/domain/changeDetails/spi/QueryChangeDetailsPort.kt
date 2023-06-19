@@ -20,4 +20,8 @@ interface QueryChangeDetailsPort {
     fun queryChangeDetailsManagementReplaceList(teacherId: Long, status: Status): List<ChangeDetailsManagementReplaceVO>
 
     fun queryChangeDetailsManagementMakeUpClassList(teacherId: Long, status: Status): List<ChangeDetailsManagementMakeUpClassVO>
+
+    fun queryChangeDetailsByMasterId(changeMasterId: Long): List<ChangeDetailsManagementReplaceVO>
+
+    fun queryMakeUpClassByMasterId(changeMasterId: Long): List<ChangeDetailsManagementMakeUpClassVO>
 }

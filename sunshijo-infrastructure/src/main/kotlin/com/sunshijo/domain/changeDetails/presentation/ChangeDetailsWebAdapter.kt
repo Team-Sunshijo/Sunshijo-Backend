@@ -6,9 +6,11 @@ import com.sunshijo.domain.changeDetails.api.dto.request.UpdateStatusRequest
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsListResponse
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsManagementMakeUpClassResponse
 import com.sunshijo.domain.changeDetails.api.dto.response.QueryChangeDetailsManagementReplaceResponse
+import com.sunshijo.domain.changeDetails.api.dto.response.QueryRequestChangeDetailsResponse
 import com.sunshijo.domain.changeDetails.domain.Status
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -25,7 +27,8 @@ class ChangeDetailsWebAdapter(
     private val queryChangeDetailsManagementReplacePort: QueryChangeDetailsManagementReplacePort,
     private val queryChangeDetailsManagementMakeUpClassPort: QueryChangeDetailsManagementMakeUpClassPort,
     private val updateStatusPort: UpdateReplaceStatusPort,
-    private val updateMakeUpClassStatusPort: UpdateMakeUpClassStatusPort
+    private val updateMakeUpClassStatusPort: UpdateMakeUpClassStatusPort,
+    private val queryRequestChangeDetailsPort: QueryRequestChangeDetailsPort
 ) {
 
     @GetMapping
@@ -57,5 +60,10 @@ class ChangeDetailsWebAdapter(
     @PutMapping("/makeUpClassUpdate")
     fun updateMakeUpClassStatus(@RequestBody request: UpdateStatusRequest) {
         updateMakeUpClassStatusPort.execute(request)
+    }
+
+    @GetMapping("/{id}")
+    fun queryRequestChangeDetails(@PathVariable("id") masterId: Long): QueryRequestChangeDetailsResponse {
+        return queryRequestChangeDetailsPort.execute(masterId)
     }
 }

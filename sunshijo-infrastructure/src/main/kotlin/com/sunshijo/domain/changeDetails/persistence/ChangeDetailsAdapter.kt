@@ -12,7 +12,6 @@ import com.sunshijo.domain.changeDetails.domain.Status
 import com.sunshijo.domain.changeDetails.domain.Status.REQUESTING
 import com.sunshijo.domain.changeDetails.exception.ChangeDetailsNotFoundException
 import com.sunshijo.domain.changeDetails.mapper.ChangeDetailsMapper
-import com.sunshijo.domain.changeDetails.persistence.entity.ChangeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.entity.QChangeDetailsEntity.changeDetailsEntity
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementMakeUpClassVO
 import com.sunshijo.domain.changeDetails.persistence.vo.QQueryChangeDetailsManagementReplaceVO
@@ -147,7 +146,10 @@ class ChangeDetailsAdapter(
         changeDetailsRepository.saveAll(changeMakeUpDetails)
     }
 
-    override fun queryChangeDetailsManagementReplaceList(teacherId: Long, status: Status): List<ChangeDetailsManagementReplaceVO> =
+    override fun queryChangeDetailsManagementReplaceList(
+        teacherId: Long,
+        status: Status
+    ): List<ChangeDetailsManagementReplaceVO> =
         jpaQueryFactory
             .select(
                 QQueryChangeDetailsManagementReplaceVO(
@@ -174,7 +176,10 @@ class ChangeDetailsAdapter(
             )
             .fetch()
 
-    override fun queryChangeDetailsManagementMakeUpClassList(teacherId: Long, status: Status): List<ChangeDetailsManagementMakeUpClassVO> =
+    override fun queryChangeDetailsManagementMakeUpClassList(
+        teacherId: Long,
+        status: Status
+    ): List<ChangeDetailsManagementMakeUpClassVO> =
         jpaQueryFactory
             .select(
                 QQueryChangeDetailsManagementMakeUpClassVO(
@@ -199,11 +204,46 @@ class ChangeDetailsAdapter(
             )
             .fetch()
 
-    override fun queryChangeDetailsByMasterId(changeMasterId: Long): List<ChangeDetails> {
-        TODO()
-    }
+    override fun queryChangeDetailsByMasterId(changeMasterId: Long): List<ChangeDetailsManagementReplaceVO> =
+        jpaQueryFactory
+            .select(
+                QQueryChangeDetailsManagementReplaceVO(
+                    changeDetailsEntity.id,
+                    changeDetailsEntity.requestTimetableEntity.date,
+                    changeDetailsEntity.requestTimetableEntity.grade,
+                    changeDetailsEntity.requestTimetableEntity.classNum,
+                    changeDetailsEntity.requestTimetableEntity.subject,
+                    changeDetailsEntity.requestTimetableEntity.period,
+                    changeDetailsEntity.changeTimetableEntity.subject,
+                    changeDetailsEntity.changeTimetableEntity.period,
+                    changeMasterEntity.reason,
+                    changeMasterEntity.teacherEntity.name,
+                    changeDetailsEntity.status
+                )
+            )
+            .from(changeDetailsEntity)
+            .innerJoin(changeDetailsEntity.changeMasterEntity, changeMasterEntity)
+            .where(changeMasterEntity.id.eq(changeMasterId))
+            .fetch()
 
-    override fun queryMakeUpClassByMasterId(changeMasterId: Long): List<MakeUpClass> {
-        TODO("Not yet implemented")
-    }
+
+    override fun queryMakeUpClassByMasterId(changeMasterId: Long): List<ChangeDetailsManagementMakeUpClassVO> =
+        jpaQueryFactory
+            .select(
+                QQueryChangeDetailsManagementMakeUpClassVO(
+                    changeDetailsEntity.id,
+                    changeDetailsEntity.requestTimetableEntity.date,
+                    changeDetailsEntity.requestTimetableEntity.grade,
+                    changeDetailsEntity.requestTimetableEntity.classNum,
+                    changeDetailsEntity.requestTimetableEntity.period,
+                    changeDetailsEntity.requestTimetableEntity.subject,
+                    changeMasterEntity.reason,
+                    changeMasterEntity.teacherEntity.name,
+                    changeDetailsEntity.status
+                )
+            )
+            .from(changeDetailsEntity)
+            .innerJoin(changeDetailsEntity.changeMasterEntity, changeMasterEntity)
+            .where(changeMasterEntity.id.eq(changeMasterId))
+            .fetch()
 }
