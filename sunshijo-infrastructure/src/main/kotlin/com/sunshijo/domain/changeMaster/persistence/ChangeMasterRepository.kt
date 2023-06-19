@@ -4,4 +4,6 @@ import com.sunshijo.domain.changeMaster.persistence.entity.ChangeMasterEntity
 import org.springframework.data.repository.CrudRepository
 
 interface ChangeMasterRepository : CrudRepository<ChangeMasterEntity, Long> {
+
+    fun findAllByTeacherEntityId(teacherId: Long): List<ChangeMasterEntity>
 }
