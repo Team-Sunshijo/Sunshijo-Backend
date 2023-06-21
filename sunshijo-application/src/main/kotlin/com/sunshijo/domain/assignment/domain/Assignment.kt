@@ -5,7 +5,7 @@ import com.sunshijo.annotation.Aggregate
 @Aggregate
 class Assignment(
 
-    val id: Long,
+    val id: Long = 0,
 
     val content: String,
 
