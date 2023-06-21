@@ -1,7 +1,6 @@
 package com.sunshijo.domain.assignment.domain
 
 import com.sunshijo.annotation.Aggregate
-import com.sunshijo.domain.dateTimetable.domain.DateTimetable
 
 @Aggregate
 class Assignment(
@@ -10,6 +9,8 @@ class Assignment(
 
     val content: String,
 
-    val dateTimetable: DateTimetable
+    val dateTimetableId: Long,
+
+    val teacherId: Long
 
 )
